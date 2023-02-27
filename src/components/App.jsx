@@ -5,10 +5,9 @@ import DenseTable from './Table/Table';
 export const App = () => {
   return (
     <>
-
       <Chart />
       <DenseTable />
-      <Date/>
+      <Date />
     </>
   );
 };
