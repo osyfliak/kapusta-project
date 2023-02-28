@@ -1,9 +1,9 @@
-import Balance from 'components/Balance/Balance'
+import BalanceHome from 'components/Balance/BalanceHome'
 import React from 'react'
 
 export const Home = () => {
   return (
 
-    <div> <Balance /></div>
+    <div> <BalanceHome /></div>
   )
 }

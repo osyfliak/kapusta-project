@@ -2,23 +2,18 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserBalance } from 'redux/balance/operations';
 import { selectBalance } from 'redux/balance/selectBalance';
-
+import ModalBalance from './ModalBalance';
 import {
   Form,
   Title,
   Input,
   Button,
-  Wrapper,
   Label,
   InputContainer,
-  ReportLink,
-  TitleLink,
   WrapperForm,
-  TextLitk,
-  TransactionLink,
 } from './Balance.styled';
-import ModalBalance from './ModalBalance';
-import Icon from '../../img/symbol-defs.svg';
+
+
 
 const Balance = () => {
   const currentBalance = useSelector(selectBalance);
@@ -51,7 +46,6 @@ const Balance = () => {
 
   return (
     <>
-      <Wrapper>
         <WrapperForm>
           <Title>Balance:</Title>
           <Form onSubmit={onSubmit}>
@@ -76,19 +70,6 @@ const Balance = () => {
             }
           </Form>
         </WrapperForm>
-        <ReportLink to="/reports">
-          <TitleLink>to transaction</TitleLink>
-          <svg alt="logo" width={14} height={14}>
-            <use href={`${Icon}#icon-Vector`}></use>
-          </svg>
-        </ReportLink>
-        <TransactionLink to="/reports">
-          <svg alt="logo" width={14} height={14}>
-            <use href={`${Icon}#icon-Vector-Back`}></use>
-          </svg>
-          <TextLitk>Reports</TextLitk>
-        </TransactionLink>
-      </Wrapper>
     </>
   );
 };
