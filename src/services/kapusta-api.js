@@ -1,6 +1,6 @@
 import { privateApi, publicApi } from 'http/http';
 
-export const toket = {
+export const token = {
   set: token => {
     privateApi.defaults.headers.Authorization = `Bearer ${token}`;
   },
