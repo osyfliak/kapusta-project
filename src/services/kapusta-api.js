@@ -32,7 +32,7 @@ export const refresh = async () => {
 // request:
 //     "description": "Income description",
 //     "amount": 100,
-//     "date": "2020-12-31"
+//      "date": "2020-12-31"
 //
 
 export const addTransactionIncome = async request => {
