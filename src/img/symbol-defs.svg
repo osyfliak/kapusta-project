@@ -1,0 +1,10 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-Vector" viewBox="0 0 32 32">
+<path fill="#52555f" style="fill: var(--color1, #52555f)" d="M0 9.6h6.857v22.4h-6.857v-22.4zM12.8 0h6.4v32h-6.4v-32zM25.6 18.286h6.4v13.714h-6.4v-13.714z"></path>
+</symbol>
+<symbol id="icon-Vector-Back" viewBox="0 0 45 32">
+<path fill="#ff751d" style="fill: var(--color1, #ff751d)" d="M44 13.6h-34.008l8.592-8.616-3.384-3.384-14.4 14.4 14.4 14.4 3.384-3.384-8.592-8.616h34.008v-4.8z"></path>
+</symbol>
+</defs>
+</svg>

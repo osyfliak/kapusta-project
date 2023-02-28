@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 const SIZE = {
   mobile: '320px',
   tablet: '768px',
@@ -16,25 +18,35 @@ const TRANSITION = {
 };
 
 export const Wrapper = styled.section`
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 35px;
   background-color: #f2f5fc;
   padding: 20px 20px;
-  justify-content: center;
 
   @media ${DEVICE.tablet} {
     display: flex;
-    justify-content: start;
+    justify-content: flex-end;
     align-items: baseline;
     flex-direction: row;
     margin-top: 0px;
-    padding: 20px 32px;
+    padding: 40px 32px 60px;
   }
   @media ${DEVICE.laptop} {
-    justify-content: start;
+    justify-content: flex-end;
     align-items: baseline;
     flex-direction: row;
     margin-left: 0;
     flex-grow: 1;
-    padding: 20px 16px;
+    padding: 40px 91px 8px;
+  }
+`;
+export const WrapperForm = styled.div`
+  @media ${DEVICE.tablet} {
+    display: flex;
+    align-items: center;
   }
 `;
 export const Title = styled.h2`
@@ -57,10 +69,12 @@ export const Title = styled.h2`
 `;
 
 export const Form = styled.form`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   @media ${DEVICE.tablet} {
+    position: relative;
     align-items: center;
   }
 `;
@@ -142,6 +156,12 @@ export const Button = styled.button`
     background-color: #ff751d;
     border-color: #ff751d;
   }
+  &:disabled {
+    background-color: lightgray;
+    cursor: default;
+    border-color: lightgray;
+    color: rgba(82, 85, 95, 0.7);
+  }
   @media ${DEVICE.tablet} {
     width: 125px;
     border-radius: 16px;
@@ -161,7 +181,7 @@ export const Label = styled.label`
   text-transform: none;
   color: #000000;
   @media ${DEVICE.tablet} {
-    margin-right: 20px;
+    margin-right: 14px;
   }
 `;
 export const InputContainer = styled.div`
@@ -169,4 +189,63 @@ export const InputContainer = styled.div`
   align-items: baseline;
   justify-content: center;
   position: relative;
+`;
+
+export const ReportLink = styled(Link)`
+  color: rgba(82, 85, 95, 0.7);
+  display: flex;
+  font-style: normal;
+  font-weight: normal;
+  align-items: baseline;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  @media ${DEVICE.tablet} {
+    margin-left: 251px;
+  }
+  @media ${DEVICE.laptop} {
+    margin-left: 298px;
+  }
+`;
+export const TitleLink = styled.h3`
+  margin: 0 20px 0 0;
+  vertical-align: center;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-style: normal;
+  font-weight: 400;
+  color: rgba(82, 85, 95, 0.7);
+  @media ${DEVICE.tablet} {
+    margin-bottom: 0;
+    justify-content: end;
+  }
+`;
+export const TransactionLink = styled(Link)`
+  display: flex;
+  color: rgba(82, 85, 95, 0.7);
+  display: flex;
+  margin-right: 72%;
+  align-items: baseline;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  @media ${DEVICE.tablet} {
+    display: none;
+  }
+`;
+export const TextLitk = styled.h3`
+  margin: 0 0 0 7px;
+  vertical-align: center;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 700;
+  color: #000000;
 `;

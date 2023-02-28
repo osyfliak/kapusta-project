@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useDispatch} from 'react-redux';
-// import { setBalance } from 'redux/auth/operations';
-// import { selectBalance, selectFirstBalance } from 'redux/auth/selectors';
+import { setUserBalance } from 'redux/balance/operations';
+import { selectBalance } from 'redux/balance/selectBalance';
 
 import {
   Form,
@@ -12,58 +11,85 @@ import {
   Wrapper,
   Label,
   InputContainer,
+  ReportLink,
+  TitleLink,
+  WrapperForm,
+  TextLitk,
+  TransactionLink,
 } from './Balance.styled';
+import ModalBalance from './ModalBalance';
+import Icon from '../../img/symbol-defs.svg';
 
 const Balance = () => {
-  const balance = useSelector(selectBalance);
-  const [value, setValue] = useState(balance ?? 0);
-  // const currentBalance = useSelector(selectBalance);
-  // const firstBalance = useSelector(selectFirstBalance);
-  const firstBalance = 0
-  const body = document.querySelector('body');
-
+  const currentBalance = useSelector(selectBalance);
+  const [value, setValue] = useState(currentBalance ?? 0);
+  const [promptClose, setPromptClose] = useState(true);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     setValue(currentBalance.toFixed(2));
   }, [currentBalance]);
 
+  const toggleWindow = () => {
+    setPromptClose(prev => !prev);
+  };
 
   const onSubmit = e => {
     e.preventDefault();
-    // dispatch(setBalance({ balance: e.target.elements.balance.value }));
-    body.classList.remove('no-scroll');
+
+    const data = e.target.elements.balance.value;
+    const number = Number(data);
+    dispatch(setUserBalance({ balance: number }));
+    if (currentBalance) {
+      setPromptClose(prev => !prev);
+    }
   };
 
   const onChange = e => {
     setValue(e.target.value);
   };
-  const formatNumber = value => {
 
-  return value
-    .toFixed(2)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-};
   return (
-    <Wrapper>
-      <Title>Balance:</Title>
-      <Form onSubmit={onSubmit}>
-        <InputContainer>
-          <Input
-            type="number"
-            readOnly={firstBalance}
-            name="balance"
-            pattern="[0-9, .UAH]*"
-            value={formatNumber}
-            onChange={onChange}
-          />
-          <Label>UAH</Label>
-        </InputContainer>
-        {!firstBalance && <Button type="submit">CONFIRM</Button>}
-      </Form>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <WrapperForm>
+          <Title>Balance:</Title>
+          <Form onSubmit={onSubmit}>
+            <InputContainer>
+              <Input
+                type="number"
+                readOnly={currentBalance}
+                name="balance"
+                pattern="[0-9, .UAH]*"
+                value={value}
+                onChange={onChange}
+              />
+              <Label>UAH</Label>
+            </InputContainer>
+            {promptClose && !currentBalance && (
+              <ModalBalance onClose={toggleWindow} />
+            )}
+            {
+              <Button type="submit" disabled={currentBalance}>
+                CONFIRM
+              </Button>
+            }
+          </Form>
+        </WrapperForm>
+        <ReportLink to="/reports">
+          <TitleLink>to transaction</TitleLink>
+          <svg alt="logo" width={14} height={14}>
+            <use href={`${Icon}#icon-Vector`}></use>
+          </svg>
+        </ReportLink>
+        <TransactionLink to="/reports">
+          <svg alt="logo" width={14} height={14}>
+            <use href={`${Icon}#icon-Vector-Back`}></use>
+          </svg>
+          <TextLitk>Reports</TextLitk>
+        </TransactionLink>
+      </Wrapper>
+    </>
   );
 };
 
