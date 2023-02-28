@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledBalance = styled.div`
+const StyledSummary = styled.div`
   width: 230px;
   text-align: center;
   /* font-family: 'Roboto'; */
@@ -30,4 +30,4 @@ const Month = styled.li`
   }
 `;
 
-export { StyledBalance, Title, List, Month };
+export { StyledSummary, Title, List, Month };

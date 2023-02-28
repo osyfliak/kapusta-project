@@ -1,6 +1,6 @@
-import { StyledBalance, Title, List, Month } from './Balance.styled';
+import { StyledSummary, Title, List, Month } from './Summary.styled';
 
-const testBalanceValues = [
+const testSummaryValues = [
   {
     month: 'january',
     value: 10000,
@@ -58,17 +58,17 @@ const formatNumber = num => {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 };
 
-export const Balance = () => {
+export const Summary = () => {
   return (
-    <StyledBalance>
+    <StyledSummary>
       <Title>Summary</Title>
       <List>
-        {testBalanceValues.map(({ month, value }) => (
+        {testSummaryValues.map(({ month, value }) => (
           <Month key={month}>
             {month} <span>{formatNumber(value)}</span>
           </Month>
         ))}
       </List>
-    </StyledBalance>
+    </StyledSummary>
   );
 };
