@@ -1,13 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logOut, refreshUser } from './operation';
+
+import { logIn, logOut, refreshUser, register } from './operation';
 
 const initialState = {
   user: { email: null, id: null },
   token: null,
+  refreshToken: '',
+  sid: '',
   isLoggedIn: false,
   isLoadingCurrentUser: false,
   isFetchingCurrentUser: false,
 };
+
+const hadleAuth =(state, action) => {
+  const { email, id, balance } = action.payload.userData;
+  state.user = { email, id, newBalance: balance };
+  state.token = action.payload.accessToken;
+  state.refreshToken = action.payload.refreshToken;
+  state.sid = action.payload.sid;
+  state.isLoggedIn = true;
+}
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -20,26 +32,24 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       // login
-      .addCase(logIn.fulfilled, (state, action) => {
-        const { email, id, balance } = action.payload.userData;
-        state.user = { email, id, newBalance: balance };
-        state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
-      })
+      .addCase(logIn.fulfilled, hadleAuth)
+
+      .addCase(register.fulfilled, hadleAuth)
       // logout
       .addCase(logOut.fulfilled, state => {
-        state.user = { email: null, id: null, newBalance: null };
-        state.token = null;
-        state.isLoggedIn = false;
+        return initialState;
       })
       // refresh user
       .addCase(refreshUser.pending, (state, action) => {
         state.isFetchingCurrentUser = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isFetchingCurrentUser = false;
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.sid = action.payload.sid;
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isFetchingCurrentUser = false;
