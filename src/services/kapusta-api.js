@@ -2,22 +2,19 @@ import axios from 'axios';
 import { privateApi, publicApi } from 'http/http';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
-axios.defaults.validateStatus();
-
+// axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
+// axios.defaults.validateStatus();
 
 export const login = async user => {
   const { data } = await publicApi.post('/auth/login', user);
   return data;
 };
 
-
-
 export const register = async user => {
   try {
     const { data } = await axios.post('/auth/register', user);
     return data;
-  }catch (error) {
+  } catch (error) {
     if (error.response.status === 409) {
       Report.failure(`User ${user.email} is existing`);
     }
@@ -28,7 +25,6 @@ export const logout = async () => {
   const { data } = await privateApi.axios.post('/auth/logout');
   return data;
 };
-
 
 export const googleLoginAPI = async () => {
   const response = await axios.axios.get('/auth/google', {
@@ -90,27 +86,26 @@ export const deleteTransaction = async id => {
 };
 
 export const getTransactionIncomeCategories = async () => {
-    const { data } = await privateApi.get('/transaction/income-categories');
-    return data;
-  };
+  const { data } = await privateApi.get('/transaction/income-categories');
+  return data;
+};
 
-  export const getTransactionExpenseCategories = async () => {
-    const { data } = await privateApi.get('/transaction/expense-categories');
-    return data;
-  };
+export const getTransactionExpenseCategories = async () => {
+  const { data } = await privateApi.get('/transaction/expense-categories');
+  return data;
+};
 
-  export const getTransactionPeriodData = async (date) => {
-    const { data } = await privateApi.get('/transaction/period-data', date);
-    return data;
-  };
+export const getTransactionPeriodData = async date => {
+  const { data } = await privateApi.get('/transaction/period-data', date);
+  return data;
+};
 
-  export const updateBalance= async (request) => {
-    const { data } = await privateApi.get('/user/balance',request );
-    return data;
-  };
+export const updateBalance = async request => {
+  const { data } = await privateApi.patch('/user/balance', { request });
+  return data;
+};
 
-  export const getUser = async (date) => {
-    const { data } = await privateApi.get('/user', );
-    return data;
-  };
-
+export const getUser = async date => {
+  const { data } = await privateApi.get('/user');
+  return data;
+};
