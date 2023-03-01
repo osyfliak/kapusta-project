@@ -26,11 +26,7 @@ export const LightModalWindow = ({
   text,
 }) => {
  
-  const handleEscapeClose = event => {
-    if (event.code === 'Escape') {
-      closeModal();
-    }
-  };
+
  
   const handleBackdropClose = event => {
     if (event.target === event.currentTarget) {
@@ -39,13 +35,19 @@ export const LightModalWindow = ({
   };
  
   useEffect(() => {
+    const handleEscapeClose = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    };
+
     window.addEventListener('keydown', handleEscapeClose);
 
     return () => {
       window.removeEventListener('keydown', handleEscapeClose);
       body.classList.toggle('no-scroll');
     };
-  });
+  },[closeModal]);
 
   return createPortal(
     // Backdrop
