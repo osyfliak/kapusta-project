@@ -10,7 +10,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { refreshUser } from 'redux/auth/operation';
+
 import { selectIsFetcingCurrentUser} from 'redux/selector';
+
 
 import { PrivateRoute } from './Auth/PrivateRoute/PrivateRoute';
 import { PublicRoute } from './Auth/PublicRoute/PublicRoute';

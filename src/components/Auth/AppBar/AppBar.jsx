@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AuthNav } from '../AuthNav/AuthNav';
+import { Header } from '../../Header/Header';
 import logo from '../../../images/logo.svg';
 import { StyledHeader } from './AppBar.styled';
 
@@ -13,7 +13,7 @@ export const AppBar = () => {
         <img src={logo} alt="logo" />
       </Link>
     
-      <AuthNav />
+      <Header />
     </StyledHeader>
   );
 };
