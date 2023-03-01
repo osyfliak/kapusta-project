@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReduser } from './auth/authSlice';
+import balanceReducer from './balance/sliceBalance';
 
 import {
   persistStore,
@@ -24,6 +25,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReduser),
     transactions: transactionsPeriodReducer,
+    balance: balanceReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
