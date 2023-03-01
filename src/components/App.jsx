@@ -6,11 +6,11 @@ import { Home } from 'pages/Home/Home';
 import { Report } from 'pages/Report/Report';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { refreshUser } from 'redux/auth/operation';
-import { selectIsFetcingCurrentUser, selectToken } from 'redux/selector';
+import { selectIsFetcingCurrentUser} from 'redux/selector';
 
 import { PrivateRoute } from './Auth/PrivateRoute/PrivateRoute';
 import { PublicRoute } from './Auth/PublicRoute/PublicRoute';
@@ -43,8 +43,8 @@ export const App = () => {
               <Route path="/register" element={<RegisterPage />} />
               {/* <Route path="*" element={<Navigate to="/login" />} /> */}
             </Route>
-            <Route path="/home" element={<Navigate to="/home" />} />
-            <Route path="/" element={<Home />} />
+ 
+            <Route path="/home" element={<Home />} />
             <Route path="/report" element={<Report />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<ThereIsNoSuchPage />} />

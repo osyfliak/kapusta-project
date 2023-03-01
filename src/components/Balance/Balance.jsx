@@ -12,11 +12,11 @@ import {
   InputContainer,
   WrapperForm,
 } from './Balance.styled';
-
-
+import { selectToken } from 'redux/selector';
 
 const Balance = () => {
   const currentBalance = useSelector(selectBalance);
+  const token = useSelector(selectToken);
   const [value, setValue] = useState(currentBalance ?? 0);
   const [promptClose, setPromptClose] = useState(true);
   const dispatch = useDispatch();
@@ -31,10 +31,12 @@ const Balance = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-
     const data = e.target.elements.balance.value;
-    const number = Number(data);
-    dispatch(setUserBalance({ balance: number }));
+    const balance = Number(data);
+    const sevedBalance = {
+      newBalance: balance,
+    };
+    dispatch(setUserBalance(sevedBalance));
     if (currentBalance) {
       setPromptClose(prev => !prev);
     }
@@ -46,30 +48,30 @@ const Balance = () => {
 
   return (
     <>
-        <WrapperForm>
-          <Title>Balance:</Title>
-          <Form onSubmit={onSubmit}>
-            <InputContainer>
-              <Input
-                type="number"
-                readOnly={currentBalance}
-                name="balance"
-                pattern="[0-9, .UAH]*"
-                value={value}
-                onChange={onChange}
-              />
-              <Label>UAH</Label>
-            </InputContainer>
-            {promptClose && !currentBalance && (
-              <ModalBalance onClose={toggleWindow} />
-            )}
-            {
-              <Button type="submit" disabled={currentBalance}>
-                CONFIRM
-              </Button>
-            }
-          </Form>
-        </WrapperForm>
+      <WrapperForm>
+        <Title>Balance:</Title>
+        <Form onSubmit={onSubmit}>
+          <InputContainer>
+            <Input
+              type="number"
+              readOnly={currentBalance}
+              name="balance"
+              pattern="[0-9, .UAH]*"
+              value={value}
+              onChange={onChange}
+            />
+            <Label>UAH</Label>
+          </InputContainer>
+          {promptClose && !currentBalance && (
+            <ModalBalance onClose={toggleWindow} />
+          )}
+          {
+            <Button type="submit" disabled={currentBalance}>
+              CONFIRM
+            </Button>
+          }
+        </Form>
+      </WrapperForm>
     </>
   );
 };
