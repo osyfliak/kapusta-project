@@ -12,11 +12,10 @@ import {
   InputContainer,
   WrapperForm,
 } from './Balance.styled';
-import { selectToken } from 'redux/selector';
+
 
 const Balance = () => {
   const currentBalance = useSelector(selectBalance);
-  const token = useSelector(selectToken);
   const [value, setValue] = useState(currentBalance ?? 0);
   const [promptClose, setPromptClose] = useState(true);
   const dispatch = useDispatch();

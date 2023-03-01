@@ -18,7 +18,6 @@ export const logIn = createAsyncThunk(
     try {
       const data = await loginUser(credentials);
       setAuthHeader(data.accessToken);
-
       return data;
     } catch (error) {
       if (error.response.status === 403) {
@@ -63,7 +62,7 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.refreshToken;
-const sid =state.auth.sid;
+    const sid = state.auth.sid;
     setAuthHeader(persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('немає токену');
@@ -72,7 +71,6 @@ const sid =state.auth.sid;
       const res = await refresh(sid);
       setAuthHeader(res.newAccessToken);
       const data = await fullUserInfoAPI();
-
       return {
         user: data,
         token: res.newAccessToken,

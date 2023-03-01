@@ -1,4 +1,3 @@
-
 import { privateApi, publicApi } from 'http/http';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
@@ -41,8 +40,8 @@ export const fullUserInfoAPI = async () => {
   return data;
 };
 
-export const refresh = async (sid) => {
-  const { data } = await privateApi.post('/auth/refresh', {sid});
+export const refresh = async sid => {
+  const { data } = await privateApi.post('/auth/refresh', { sid });
   return data;
 };
 
@@ -101,7 +100,7 @@ export const getTransactionPeriodData = async date => {
 };
 
 export const updateBalance = async request => {
-  const { data } = await privateApi.patch('/user/balance', { request });
+  const { data } = await privateApi.patch('/user/balance', request);
   return data;
 };
 
