@@ -34,7 +34,7 @@ export const Title = styled.h2`
   letter-spacing: 0.02em;
   color: rgba(82, 85, 95, 0.7);
   @media ${DEVICE.tablet} {
-    margin: 0 21px 0 36px;
+    margin: 0 21px 0 10px;
   }
   @media ${DEVICE.laptop} {
     margin: 0 20px 0;

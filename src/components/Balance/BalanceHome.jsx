@@ -15,7 +15,7 @@ const BalanceHome = () => {
     <>
       <Wrapper>
       <Balance/>
-        <ReportLink to="/reports">
+        <ReportLink to="/report">
           <TitleLink>Reports</TitleLink>
           <svg alt="logo" width={14} height={14}>
             <use href={`${Icon}#icon-Vector`}></use>

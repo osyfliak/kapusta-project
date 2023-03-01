@@ -3,6 +3,7 @@ import { setUserBalance } from './operations';
 
 const initialState = {
   balance: 0,
+  currentPeriod: { month: '', year: '' },
   isLoadinng: false,
   error: null,
 };
@@ -10,6 +11,11 @@ const initialState = {
 const balanceSlice = createSlice({
   name: 'balance',
   initialState,
+  reducers: {
+    setCurrentPeriod(state, action) {
+      state.currentPeriod = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(setUserBalance.pending, state => {
@@ -30,3 +36,4 @@ const balanceSlice = createSlice({
 });
 
 export default balanceSlice.reducer;
+export const { setCurrentPeriod } = balanceSlice.actions;
