@@ -1,20 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operation';
-import logoutImg from '../../../images/logout.svg';
+import logoutImg from '../../images/logout.svg';
 import { selectIsLoggedIn, selectUser } from 'redux/selector';
-import {
-  StyledAuthNav,
-  StyledLoginLabel,
-  StyledLoginName,
-  StyledLogoutImg,
-  StyledVerticalLine,
-  StyledExitButton,
-} from './AuthNav.styled';
+import {StyledAuthNav,StyledLoginLabel,StyledLoginName,StyledLogoutImg,StyledVerticalLine, StyledExitButton,} from './Header.styled';
 import { LightModalWindow } from '../LightModalWindow/LightModalWindow';
 
 
-export const AuthNav = () => {
+export const Header = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userEmail = useSelector(selectUser);

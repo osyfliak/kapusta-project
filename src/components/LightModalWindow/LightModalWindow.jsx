@@ -9,9 +9,9 @@ import {
   StyledCloseButton,
   StyledModalBackdrop,
 } from './LightModalWindow.styled';
-import { OrangeButton } from '../Buttons/btnLogin';
-import { WhiteButton } from '../Buttons/btnLoginWhite';
-import close from '../../../images/close.svg';
+import { OrangeButton } from '../Auth/Buttons/btnLogin';
+import { WhiteButton } from '../Auth/Buttons/btnLoginWhite';
+import close from '../../images/close.svg';
 
 
 const modalRoot = document.getElementById('modal-root');
