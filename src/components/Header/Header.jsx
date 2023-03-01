@@ -1,72 +1,62 @@
-import {
-  StyledHeader,
-  LogoContainer,
-  Block,
-  LogoSvg,
-  StyledContainer,
-  Img,
-  Avatar,
-  Name,
-  Line,
-  Exit,
-  ExitText,
-  ExitSvg,
-} from './Header.styled';
-// import { useAuth } from 'hooks';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-// import { getToken } from 'redux/auth/authSelectors';
-// import { logoutUser } from 'redux/auth/authOperations';
-import svg from '../../images/icons-sprite.svg';
-// import { Popup } from 'components/Popup/Popup';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from 'redux/auth/operation';
+import logoutImg from '../../images/logout.svg';
+import { selectIsLoggedIn, selectUser } from 'redux/selector';
+import {StyledAuthNav,StyledLoginLabel,StyledLoginName,StyledLogoutImg,StyledVerticalLine, StyledExitButton,} from './Header.styled';
+import { LightModalWindow } from '../LightModalWindow/LightModalWindow';
 
-export function Header() {
+
+export const Header = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userEmail = useSelector(selectUser);
   const dispatch = useDispatch();
-  const { user } = useAuth();
-  const token = useSelector(getToken);
-  const [popup, setPopup] = useState({
-    isShow: false,
-    title: '',
-    action: null,
-  });
 
-  const handleExit = () => {
-    setPopup({
-      isShow: true,
-      title: 'Do you really want to leave?',
-      action: () => dispatch(logoutUser()),
-    });
-    document.querySelector('#modal').classList.add('js-action')
+ 
+  const handleClick = () => {
+    dispatch(logOut());
+  };
+ 
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+ 
+  const handleModalClose = () => {
+    setModalOpen(false);
   };
 
   return (
-    <>
-      <StyledHeader>
-        <LogoContainer>
-          <Block />
-          <LogoSvg>
-            <use href={`${svg}#logo`}></use>
-          </LogoSvg>
-        </LogoContainer>
-        {token && (
-          <StyledContainer>
-            <Img>
-              <Avatar>
-                {user?.email && user.email.slice(0, 1).toUpperCase()}
-              </Avatar>
-            </Img>
-            <Name>{user.email}</Name>
-            <Line />
-            <Exit type="button" onClick={handleExit}>
-              <ExitText>Exit</ExitText>
-              <ExitSvg>
-                <use href={`${svg}#logout`}></use>
-              </ExitSvg>
-            </Exit>
-          </StyledContainer>
+    isLoggedIn && (
+      <>
+        <StyledAuthNav>
+        
+          <StyledLoginLabel>{userEmail[0].toUpperCase()}</StyledLoginLabel>
+        
+          <StyledLoginName>{userEmail}</StyledLoginName>
+        
+          <StyledLogoutImg
+            src={logoutImg}
+            alt="logout"
+            onClick={handleModalOpen}
+          />
+          
+          <StyledVerticalLine></StyledVerticalLine>
+        
+          <StyledExitButton type="button" onClick={handleModalOpen}>
+            Exit
+          </StyledExitButton>
+        </StyledAuthNav>
+     
+        {modalOpen && (
+          <LightModalWindow
+            closeModal={handleModalClose}
+            dispatch={handleClick}
+          >
+            Do you really want to leave?
+          </LightModalWindow>
         )}
-      </StyledHeader>
-      {popup.isShow && <Popup popup={popup} setPopup={setPopup} />}
-    </>
+      </>
+    )
   );
-}
+};
