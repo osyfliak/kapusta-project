@@ -18,7 +18,7 @@ import { transactionsPeriodReducer } from './chart/transactions-slice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'refreshToken', 'sid'],
 };
 
 export const store = configureStore({
