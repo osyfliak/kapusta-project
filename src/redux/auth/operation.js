@@ -63,7 +63,7 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.refreshToken;
-const sid =state.auth.sid;
+const sid = state.auth.sid;
     setAuthHeader(persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('немає токену');

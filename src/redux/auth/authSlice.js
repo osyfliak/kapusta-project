@@ -12,7 +12,7 @@ const initialState = {
   isFetchingCurrentUser: false,
 };
 
-const hadleAuth =(state, action) => {
+const handleAuth =(state, action) => {
   const { email, id, balance } = action.payload.userData;
   state.user = { email, id, newBalance: balance };
   state.token = action.payload.accessToken;
@@ -32,9 +32,9 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       // login
-      .addCase(logIn.fulfilled, hadleAuth)
+      .addCase(logIn.fulfilled, handleAuth)
 
-      .addCase(register.fulfilled, hadleAuth)
+      .addCase(register.fulfilled, handleAuth)
       // logout
       .addCase(logOut.fulfilled, state => {
         return initialState;
