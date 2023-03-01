@@ -1,4 +1,5 @@
-import { Header } from 'components/Header/Header';
+
+import { Chart } from 'components/Chart/Chart';
 import { Summary } from 'components/Summary/Summary';
 import React from 'react';
 
@@ -7,7 +8,7 @@ export const Home = () => {
     <div>
       Home
       <Summary />
-      <Header/>
+      <Chart/>
     </div>
   );
 };
