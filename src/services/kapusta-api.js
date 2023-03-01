@@ -22,12 +22,12 @@ export const register = async user => {
 };
 
 export const logout = async () => {
-  const { data } = await privateApi.post('/auth/logout');
+  const { data } = await privateApi.axios.post('/auth/logout');
   return data;
 };
 
 export const googleLoginAPI = async () => {
-  const response = await axios.get('/auth/google', {
+  const response = await axios.axios.get('/auth/google', {
     headers: {
       accept: '*/*',
     },
@@ -37,14 +37,14 @@ export const googleLoginAPI = async () => {
 };
 
 export const fullUserInfoAPI = async () => {
-  const { data } = await axios.get('user');
+  const { data } = await privateApi.get('user');
   return data;
 };
 
-export const refresh = async () => {
-  const { data } = await privateApi.post('/auth/refresh');
-  return data;
-};
+// export const refresh = async () => {
+//   const { data } = await privateApi.post('/auth/refresh');
+//   return data;
+// };
 
 export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
