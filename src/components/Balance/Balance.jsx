@@ -16,6 +16,9 @@ import {
 
 const Balance = () => {
   const currentBalance = useSelector(selectBalance);
+
+
+
   const [value, setValue] = useState(currentBalance ?? 0);
   const [promptClose, setPromptClose] = useState(true);
   const dispatch = useDispatch();
@@ -32,6 +35,7 @@ const Balance = () => {
     e.preventDefault();
     const data = e.target.elements.balance.value;
     const balance = Number(data);
+    console.log(balance);
     const sevedBalance = {
       newBalance: balance,
     };
