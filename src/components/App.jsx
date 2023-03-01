@@ -8,15 +8,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { addAccessToken } from 'redux/auth/authSlice';
 
 import { refreshUser } from 'redux/auth/operation';
 
-import { selectIsFetcingCurrentUser, selectToken } from 'redux/selector';
-import { setAuthHeader } from 'services/kapusta-api';
-
-
-
+import { selectIsFetcingCurrentUser } from 'redux/selector';
 
 import { PrivateRoute } from './Auth/PrivateRoute/PrivateRoute';
 import { PublicRoute } from './Auth/PublicRoute/PublicRoute';
@@ -24,20 +19,11 @@ import { SharedLayouts } from './Auth/SharedLayouts/SharedLayouts';
 
 export const App = () => {
   const dispatch = useDispatch();
-   const token = useSelector(selectToken);
 
   const isFetchingUser = useSelector(selectIsFetcingCurrentUser);
-   const location = window.location;
-  const urlSearchParams = new URLSearchParams(location.search);
-  const accessToken = urlSearchParams.get('accessToken');
 
   useEffect(() => {
-   
-    setAuthHeader(accessToken);
-    dispatch(addAccessToken(accessToken));
-     dispatch(refreshUser(token));
-
-    
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
@@ -56,7 +42,7 @@ export const App = () => {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="*" element={<Navigate to="/login" />} />
             </Route>
- 
+
             <Route path="/home" element={<Home />} />
             <Route path="/report" element={<Report />} />
             <Route path="/auth" element={<Auth />} />
