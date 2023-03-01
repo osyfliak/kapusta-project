@@ -17,6 +17,8 @@ import {
 const Balance = () => {
   const currentBalance = useSelector(selectBalance);
 
+
+
   const [value, setValue] = useState(currentBalance ?? 0);
   const [promptClose, setPromptClose] = useState(true);
   const dispatch = useDispatch();
