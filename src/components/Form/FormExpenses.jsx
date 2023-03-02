@@ -40,7 +40,7 @@ const FormExpenses = () => {
       return;
     }
     dispatch(getExpenseCategoriesThunk());
-  }, [dispatch]);
+  }, [dispatch, isUser]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
