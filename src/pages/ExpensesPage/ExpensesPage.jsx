@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Summary } from '../../components/Summary/Summary';
-import DenseTable from 'components/Table/Table'
+import DenseTable from 'components/Table/Table';
 // import {Form} from '../../components/Form/Form'
- 
+
 import {
   selectBalance,
   // selectExpenseTransactions,

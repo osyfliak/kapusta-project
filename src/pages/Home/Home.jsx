@@ -6,6 +6,7 @@ import ExpensesPage from 'pages/Expences/Expences';
 
 // import { Summary } from 'components/Summary/Summary';
 import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 
 export const Home = () => {
@@ -19,6 +20,10 @@ export const Home = () => {
       <Chart />
         <FormIncome />
     
+      <Link to="/home/expenses">expenses</Link>
+      <Link to="/home/income">income</Link>
+      <Outlet />
+      <Chart />
     </div>
   );
-};  
+};
