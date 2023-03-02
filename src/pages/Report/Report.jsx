@@ -1,13 +1,16 @@
 import React from 'react'
 import BalanceReports from 'components/Balance/BalanceReports'
-// import ReportsBalance from 'components/ReportsBalance/ReportsBalance'
+
+import Container from 'components/Container/Container'
+import { Chart } from 'components/Chart/Chart'
 
 export const Report = () => {
   return (
-    <div>Report
-      <BalanceReports />
-  
-    </div>
-  )   
+    <Container>
+      <BalanceReports/>
+      <Chart />
+    </Container>
+  )
+
 }
  /* <ReportsBalance /> */
