@@ -1,8 +1,8 @@
-
-import { Chart } from 'components/Chart/Chart';
 import BalanceHome from 'components/Balance/BalanceHome';
+import { Chart } from 'components/Chart/Chart';
+import ExpensesPage from 'pages/Expences/Expences';
 
-import { Summary } from 'components/Summary/Summary';
+// import { Summary } from 'components/Summary/Summary';
 import React from 'react';
 
 export const Home = () => {
@@ -10,8 +10,9 @@ export const Home = () => {
     <div>
       Home
       <BalanceHome />
-      <Summary />
+      {/* <Summary /> */}
+      <ExpensesPage />
       <Chart/>
     </div>
   );
-};
+};  
