@@ -14,6 +14,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 import { transactionsPeriodReducer } from './chart/transactions-slice';
+import { transactionsReduser } from './transactions/transactions-slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -26,6 +27,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReduser),
     transactions: transactionsPeriodReducer,
     balance: balanceReducer,
+    transaction: transactionsReduser,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

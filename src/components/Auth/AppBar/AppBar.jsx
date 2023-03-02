@@ -9,7 +9,7 @@ export const AppBar = () => {
     
     <StyledHeader>
    
-      <Link to="/">
+      <Link to="/home">
         <img src={logo} alt="logo" />
       </Link>
     
