@@ -14,11 +14,12 @@ import {
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 import { transactionsPeriodReducer } from './chart/transactions-slice';
+import { transactionReducer } from './transactions/transactions-slice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'refreshToken', 'sid'],
 };
 
 export const store = configureStore({
@@ -26,6 +27,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReduser),
     transactions: transactionsPeriodReducer,
     balance: balanceReducer,
+    transaction: transactionReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -35,7 +35,7 @@ export const WrapperBalanceReports = styled.section`
     flex-direction: row;
     margin-left: 0;
     flex-grow: 1;
-    padding: 40px 91px 8px;
+    padding: 40px 123px 8px;
   }
 `;
 

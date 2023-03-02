@@ -1,14 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setAuthHeader, updateBalance } from 'services/kapusta-api';
+
+import { updateBalance } from 'services/kapusta-api';
+
 
 export const setUserBalance = createAsyncThunk(
   'balance/setBalance',
 
-  async (request, { rejectWithValue, getState }) => {
+
+  async (request, { rejectWithValue }) => {
     try {
-      const resp = await updateBalance(request);
-      console.log(resp);
-      return resp;
+      const data = await updateBalance(request);
+      return data;
+
     } catch ({ response }) {
       const { status, data } = response;
       const error = {
@@ -19,8 +22,3 @@ export const setUserBalance = createAsyncThunk(
     }
   }
 );
-// const savedToken = getState().auth.token;
-// if (!savedToken) {
-//   return rejectWithValue('there is no token');
-// }
-// setAuthHeader(savedToken);

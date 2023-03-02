@@ -1,16 +1,21 @@
-import { Chart } from 'components/Chart/Chart';
 import BalanceHome from 'components/Balance/BalanceHome';
 
-import { Summary } from 'components/Summary/Summary';
+import Container from 'components/Container/Container';
+
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import { Test } from './Home.styled';
 
 export const Home = () => {
   return (
-    <div>
-      Home
-      <BalanceHome />
-      <Summary />
-      <Chart/>
-    </div>
+    <>
+      <Container>
+        <BalanceHome />
+        <Test to="/home/expenses">expenses</Test>
+        <Test to="/home/income">income</Test>
+
+        <Outlet />
+      </Container>
+    </>
   );
 };

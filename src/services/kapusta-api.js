@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { privateApi, publicApi } from 'http/http';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
@@ -12,7 +11,7 @@ export const login = async user => {
 
 export const register = async user => {
   try {
-    const { data } = await axios.post('/auth/register', user);
+    const { data } = await publicApi.post('/auth/register', user);
     return data;
   } catch (error) {
     if (error.response.status === 409) {
@@ -22,12 +21,12 @@ export const register = async user => {
 };
 
 export const logout = async () => {
-  const { data } = await privateApi.axios.post('/auth/logout');
+  const { data } = await privateApi.post('/auth/logout');
   return data;
 };
 
 export const googleLoginAPI = async () => {
-  const response = await axios.axios.get('/auth/google', {
+  const response = await publicApi.get('/auth/google', {
     headers: {
       accept: '*/*',
     },
@@ -41,17 +40,17 @@ export const fullUserInfoAPI = async () => {
   return data;
 };
 
-// export const refresh = async () => {
-//   const { data } = await privateApi.post('/auth/refresh');
-//   return data;
-// };
+export const refresh = async sid => {
+  const { data } = await privateApi.post('/auth/refresh', { sid });
+  return data;
+};
 
 export const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  privateApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
+  privateApi.defaults.headers.common.Authorization = '';
 };
 
 // request:
@@ -101,7 +100,9 @@ export const getTransactionPeriodData = async date => {
 };
 
 export const updateBalance = async request => {
-  const { data } = await privateApi.patch('/user/balance', { request });
+
+  const { data } = await privateApi.patch('/user/balance', request);
+
   return data;
 };
 
