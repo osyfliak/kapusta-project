@@ -1,7 +1,8 @@
+import Table from 'components/Table/Table';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Summary } from '../../components/Summary/Summary';
-import DenseTable from 'components/Table/Table';
+
 // import {Form} from '../../components/Form/Form'
 
 import {
@@ -10,6 +11,7 @@ import {
   selectIsLoggedIn,
 } from '../../redux/selector';
 import { getExpense } from '../../redux/transactions/operation';
+import { Block } from './ExpensesPage.styled';
 
 
 export default function ExpensesPage() {
@@ -28,12 +30,14 @@ export default function ExpensesPage() {
   return (
     <>
       {/* {<Form />} */}
-
-      <DenseTable>
-        {/* {allExpenses} */}
+{/* <Block>  */}
+  <Table/>
+        {/* {allExpenses}
         {color}
-      </DenseTable>
+      </Table> */}
       <Summary />
+      {/* </Block> */}
+     
     </>
   );
 }

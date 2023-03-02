@@ -19,7 +19,7 @@ import { selectIsFetcingCurrentUser } from 'redux/selector';
 import { PrivateRoute } from './Auth/PrivateRoute/PrivateRoute';
 import { PublicRoute } from './Auth/PublicRoute/PublicRoute';
 import { SharedLayouts } from './Auth/SharedLayouts/SharedLayouts';
-import Container from './Container/Container';
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ export const App = () => {
         <ToastContainer />
         <Routes>
           <Route path="/" element={<SharedLayouts />}>
-            <Container>
+          
             <Route path="/" element={<PrivateRoute />}>
               <Route index element={<Navigate to="/home" />} />
               <Route path="/home" element={<Home />}>
@@ -45,7 +45,7 @@ export const App = () => {
               </Route>
               <Route path="/report" element={<Report />} />
             </Route>
-            </Container>
+          
           </Route>
 
           <Route path="/" element={<PublicRoute />}>

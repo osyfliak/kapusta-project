@@ -1,4 +1,7 @@
+import { Summary } from "components/Summary/Summary";
+import Table from "components/Table/Table";
 import DenseTable from "components/Table/Table";
+import { Block } from "pages/Income/Income.styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBalance, selectIsLoggedIn } from "redux/selector";
@@ -19,14 +22,16 @@ export default function ExpensesPage() {
   
     return (
       <>
-        {/* {<Form />} */}
-  
-        <DenseTable>
-          {/* {allExpenses} */}
-          {color}
-        </DenseTable>
-        <summary />
-      </>
+      {/* {<Form />} */}
+{/* <Block>  */}
+  <Table/>
+        {/* {allExpenses}
+        {color}
+      </Table> */}
+      <Summary />
+      {/* </Block> */}
+     
+    </>
     );
   }
   

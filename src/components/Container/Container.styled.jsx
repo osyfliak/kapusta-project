@@ -11,7 +11,7 @@ export const ContainerBox = styled.div`
   margin: 0 auto;
   min-width: 320px;
   min-height: 100vh;
-  padding: 56px 20px 55px 20px;
+  padding: 0px 20px 55px 20px;
   background-image: url(${bgMobile});
   background-size: 100%;
   background-repeat: no-repeat;
@@ -21,7 +21,7 @@ export const ContainerBox = styled.div`
     margin: 0 auto;
     width: 480px;
     min-height: 100vh;
-    padding: 56px 20px 55px 20px;
+    padding: 0px 20px 55px 20px;
     background-image: url(${bgMobile});
     background-size: 100%;
     background-repeat: no-repeat;
@@ -33,7 +33,7 @@ export const ContainerBox = styled.div`
     width: 768px;
     min-height: 100vh;
     /* height: 1200px; */
-    padding: 96px 32px 60px 32px;
+    padding: 0px 32px 60px 32px;
     background-image: url(${backTwoCabages}),
         url(${bgTablet});
     background-repeat: no-repeat;
@@ -45,7 +45,7 @@ export const ContainerBox = styled.div`
     margin: 0 auto;
     width: 1280px;
     min-height: 100vh;
-    padding: 96px 91px 60px 91px;
+    padding: 0px 91px 60px 91px;
     background-image: url(${bgBottomDesktop}),
         url(${bgDesktop});
     background-repeat: no-repeat;
