@@ -12,7 +12,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import ChartContainerStyled from './ChartContainerStyled';
 import { useSelector } from 'react-redux';
-import { selectTransactionsPerPeriod, selectCategory, selectType } from 'redux/chart/transactions-selectors';
+import { selectTransactionsPerPeriod, selectCategory, selectType } from 'redux/transactions/transactions-selectors';
 import { getOptions } from './ChartOptions';
 import useWindowDimensions from './ChartHookWindowsDimenssions';
 

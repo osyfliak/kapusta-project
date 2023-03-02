@@ -12,4 +12,13 @@ export const selectIncomes = state => state.transaction.incomes.incomes;
 
 export const selectExpenses = state => state.transaction.expenses.expenses;
 
+// Vasyliev
+export const selectType = (state) => state.transaction.type;
+export const selectTransactionsPerPeriod = (state) => state.transaction.periodItems;
+export const selectCategory = (state) => state.transaction.selectCategory;
+// Vasyliev
+
+
 export const selectUser = state => state.auth.user.email;
+
+

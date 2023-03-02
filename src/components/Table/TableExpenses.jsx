@@ -25,8 +25,8 @@ console.log(expensesList);
           </TableRow>
         </TableHead>
         <TableBody>
-          {expensesList.map(object => (
-            <TableRow
+          {expensesList.map((ind,object) => (
+            <TableRow key={ind}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">{object.transaction.date.split('-').join('.')}</TableCell>
