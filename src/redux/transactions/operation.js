@@ -111,8 +111,9 @@ export const getTransactionPeriodDataThunk = createAsyncThunk(
       const data = await getTransactionPeriodData(date);
       console.log("getTransactionsPeriodData: ",data);
       return data;
-    } catch {
-      return rejectWithValue();
+    } catch (error) {
+      console.log("rejectWithValue: ",error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

@@ -17,6 +17,7 @@ const BalanceHome = () => {
   const date = new Date();  
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
+  //let currentPeriod = `${month.toString().padStart(2,'0')}-${year.toString()}`;
   let currentPeriod = `${year.toString()}-${month.toString().padStart(2,'0')}`;
   console.log(currentPeriod);
   useEffect(() => {  

@@ -95,7 +95,8 @@ export const getTransactionExpenseCategories = async () => {
 };
 
 export const getTransactionPeriodData = async date => {
-  const { data } = await privateApi.get('/transaction/period-data', date);
+  let testDate = "2023-03";
+  const { data } = await privateApi.get('/transaction/period-data', testDate);
   return data;
 };
 

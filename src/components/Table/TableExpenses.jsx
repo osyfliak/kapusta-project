@@ -25,8 +25,9 @@ console.log(expensesList);
           </TableRow>
         </TableHead>
         <TableBody>
-          {expensesList.map((ind,object) => (
-            <TableRow key={ind}
+          {expensesList.map(object => {
+            console.log('object.transaction: ',object.transaction);
+            return   <TableRow key={object.transaction._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">{object.transaction.date.split('-').join('.')}</TableCell>
@@ -35,7 +36,7 @@ console.log(expensesList);
               <TableCell align="right">{object.transaction.amount}</TableCell>
               
             </TableRow>
-          ))}
+          })}
         </TableBody>
       </Table>
     </TableContainer>
