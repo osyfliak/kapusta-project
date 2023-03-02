@@ -2,6 +2,7 @@ import { Auth } from 'pages/Auth/Auth';
 import LoginPage from 'pages/Auth/LoginPage/LoginPage';
 import RegisterPage from 'pages/Auth/RegisterPage/RegisterPage';
 import ThereIsNoSuchPage from 'pages/Auth/ThereIsNoSuchPage/ThereIsNoSuchPage';
+// import ExpensesPage from 'pages/Expences/Expences';
 import { Home } from 'pages/Home/Home';
 import { Report } from 'pages/Report/Report';
 import { useEffect } from 'react';
@@ -44,6 +45,7 @@ export const App = () => {
             </Route>
 
             <Route path="/home" element={<Home />} />
+            {/* <Route path="/expences" element={<ExpensesPage />} /> */}
             <Route path="/report" element={<Report />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<ThereIsNoSuchPage />} />
