@@ -1,9 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addExpenseTransactionThunk, addIncomeTransactionThunk, delateTransactionThunk, getExpenseCategoriesThunk, getExpenseTransactionsByThunk, getIncomeCategoriesThunk, getIncomeTransactionsByThunk } from "./operation";
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  addExpenseTransactionThunk,
+  addIncomeTransactionThunk,
+  delateTransactionThunk,
+  getExpenseCategoriesThunk,
+  getExpenseTransactionsByThunk,
+  getIncomeCategoriesThunk,
+  getIncomeTransactionsByThunk,
+} from './operation';
 
 const initialState = {
   transactions: [],
-  category: [],
+  categoryIncome: [],
+  categoryExpenses: [],
   isLoading: false,
   error: null,
 };
@@ -58,7 +67,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(getExpenseCategoriesThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.category = payload;
+        state.categoryExpenses = payload;
       })
       .addCase(getExpenseCategoriesThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -91,12 +100,12 @@ export const transactionSlice = createSlice({
       })
       .addCase(getIncomeCategoriesThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.category = payload;
+        state.categoryIncome = payload;
       })
       .addCase(getIncomeCategoriesThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
-      })
+      });
   },
 });
 export const transactionReducer = transactionSlice.reducer;

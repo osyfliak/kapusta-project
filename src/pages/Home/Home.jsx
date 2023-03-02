@@ -1,6 +1,7 @@
 import BalanceHome from 'components/Balance/BalanceHome';
 import { Chart } from 'components/Chart/Chart';
-import OperationsForm from 'components/Form/FormIncome';
+import FormExpenses from 'components/Form/FormExpenses';
+import FormIncome from 'components/Form/FormIncome';
 import ExpensesPage from 'pages/Expences/Expences';
 
 // import { Summary } from 'components/Summary/Summary';
@@ -12,10 +13,11 @@ export const Home = () => {
     <div>
       
       <BalanceHome />
-        <OperationsForm/>
+      <FormExpenses/>
       {/* <Summary /> */}
       <ExpensesPage />
       <Chart />
+        <FormIncome />
     
     </div>
   );

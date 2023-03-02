@@ -1,4 +1,5 @@
-export const selectCategory = state => state.transaction.category;
+export const selectCategoryIncome = state => state.transaction.categoryIncome;
+export const selectCategoryExpenses = state => state.transaction.categoryExpenses;
 export const selectTransactions = state => state.transaction.transactions;
 export const selectIncomeSummary = state =>
   state.transaction.incomes.monthStats;

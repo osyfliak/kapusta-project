@@ -18,54 +18,51 @@ import {
   InputWrapper,
   SelectInput,
 } from './Form.styled';
-import { getIncomeCategoriesThunk, addIncomeTransactionThunk } from 'redux/transactions/operation';
-import { selectCategoryIncome } from 'redux/transactions/transactions-selectors';
+import {
+  getExpenseCategoriesThunk,
+  addExpenseTransactionThunk,
+} from 'redux/transactions/operation';
+import { selectCategoryExpenses } from 'redux/transactions/transactions-selectors';
 import { selectUser } from 'redux/selector';
 
-
-
-const FormIncome = () => {
+const FormExpenses = () => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const dispatch = useDispatch();
-  const categoriesArray = useSelector(selectCategoryIncome);
-  const isUser = useSelector(selectUser); 
-
+  const categoriesArray = useSelector(selectCategoryExpenses);
+  const isUser = useSelector(selectUser);
 
   useEffect(() => {
     if (!isUser) {
-return
-}
-    dispatch(getIncomeCategoriesThunk()); 
+      return;
+    }
+    dispatch(getExpenseCategoriesThunk());
   }, [dispatch]);
 
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    if (description.trim().length === 0 || !amount) return; // toast.warning('Missing required fields');
 
-  const handleSubmit = evt => { 
-    evt.preventDefault(); 
-    if (description.trim().length === 0  || !amount) return;// toast.warning('Missing required fields'); 
-
-    dispatch( 
-      addIncomeTransactionThunk({ 
-        description, 
-        amount: Number(amount), 
-        category, 
-        date, 
-      }) 
-    ); 
-    handleClear()
-  }; 
-
-  const handleClear = () => { 
-    setDescription(''); 
-    setAmount(''); 
-    setCategory(''); 
-    setDate(moment(new Date()).format('YYYY-MM-DD'));
+    dispatch(
+      addExpenseTransactionThunk({
+        description,
+        amount: Number(amount),
+        category,
+        date,
+      })
+    );
+    handleClear();
   };
 
-
+  const handleClear = () => {
+    setDescription('');
+    setAmount('');
+    setCategory('');
+    setDate(moment(new Date()).format('YYYY-MM-DD'));
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -78,14 +75,14 @@ return
       case 'amount':
         setAmount(value);
         break;
-        case 'category':
+      case 'category':
         setCategory(value);
         break;
       default:
         break;
     }
   };
-  
+
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
@@ -103,25 +100,21 @@ return
           </CalendarIcon>
         </DateWrapper>
         <DescriptionInput
-          placeholder= 'Product description'
+          placeholder="Product description"
           name="description"
           aria-label="Text"
           onChange={handleChange}
           type="text"
           value={description}
         />
-        <SelectInput 
-              name="category" 
-              value={category} 
-              onChange={handleChange} 
-            > 
-              <option value="category">Product category</option> 
-              {categoriesArray?.map(item => ( 
-                <option key={item} value={item}> 
-                  {item} 
-                </option> 
-              ))} 
-            </SelectInput>
+        <SelectInput name="category" value={category} onChange={handleChange}>
+          <option value="category">Product category</option>
+          {categoriesArray?.map(item => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </SelectInput>
         <CountWrapper>
           <CountInput
             onChange={handleChange}
@@ -140,14 +133,9 @@ return
         </CountWrapper>
       </InputWrapper>
       <ButtonWrapper>
-        <ModalButtonOrange type="submit" >
-          Input
-        </ModalButtonOrange>
+        <ModalButtonOrange type="submit">Input</ModalButtonOrange>
 
-        <ModalButtonWhite
-          type="button"
-             onClick={handleClear}
-        >
+        <ModalButtonWhite type="button" onClick={handleClear}>
           Clear
         </ModalButtonWhite>
       </ButtonWrapper>
@@ -155,5 +143,4 @@ return
   );
 };
 
-
-export default FormIncome;
+export default FormExpenses;
