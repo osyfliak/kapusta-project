@@ -1,52 +1,64 @@
 import styled from 'styled-components';
 
 
-export const TableBodyList = styled.tr`
-  height: 40px;
-  border: 2px solid '#F5F6FB;
-`;
+export const TransactionBox = styled.div`
+  overflow: hidden;
 
-export const TableBodyItem = styled.td`
-  height: 100%;
-  width: calc(746px / 5);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 
-  text-align: center;
-
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-size: 12px;
-  line-height: calc(14 / 12);
-  letter-spacing: 0.04em;
-
-  color: #52555f;
-
-  :nth-child(4) {
-    font-weight: 700;
-    color: #407946;
+  @media screen and (min-width: 1200px) {
+    width: 624px;
   }
-  :nth-child(5) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  @media screen and (min-width: 1200px) {
+    width: 746px;
+    height: 400px;
   }
 `;
 
-export const DeleteBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 32px;
-  height: 32px;
+export const TableBox = styled.table`
+  width: 100%;
 
   border: none;
-  border-radius: 50%;
+
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  @media screen and (min-width: 1200px) {
+    width: 746px;
+    height: 400px;
+  }
+`;
+
+export const TableTitle = styled.tr``;
+
+export const TableTitleItem = styled.th`
+  width: calc(100% / 5);
+  height: 40px;
+
+  border-spacing: 0;
 
   background-color: #F5F6FB;
-  cursor: pointer;
+  text-transform: uppercase;
+`;
 
-  :hover,
-  :focus {
-    background-color:#FF751D;
+export const TableBodys = styled.tbody`
+  display: block;
+  overflow-y: auto;
+  width: 746px;
+  max-height: 400px;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F6FB;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+
+    background-color: #FF751D;
   }
 `;

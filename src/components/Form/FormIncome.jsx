@@ -40,7 +40,7 @@ const FormIncome = () => {
 return
 }
     dispatch(getIncomeCategoriesThunk()); 
-  }, [dispatch]);
+  }, [dispatch, isUser]);
 
 
   const handleSubmit = evt => { 
