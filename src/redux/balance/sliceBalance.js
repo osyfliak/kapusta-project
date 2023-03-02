@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logIn, refreshUser } from 'redux/auth/operation';
 import { setUserBalance } from './operations';
-
 const initialState = {
   balance: 0,
   currentPeriod: { month: '', year: '' },
   isLoadinng: false,
   error: null,
+  allSummaryReports: [],
 };
-
 const balanceSlice = createSlice({
   name: 'balance',
   initialState,
@@ -40,6 +39,5 @@ const balanceSlice = createSlice({
       });
   },
 });
-
 export default balanceSlice.reducer;
 export const { setCurrentPeriod } = balanceSlice.actions;
