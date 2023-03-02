@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Select from 'react-select';
+// import Select from 'react-select';
 const SIZE = {
   mobile: '320px',
   tablet: '768px',
@@ -151,7 +151,7 @@ export const DescriptionInput = styled.input`
   }
 `;
 
-export const SelectInput = styled(Select)`
+export const SelectInput = styled.select`
   display: block;
   font-family: inherit;
   width: 100%;

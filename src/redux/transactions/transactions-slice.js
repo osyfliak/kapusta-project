@@ -1,141 +1,102 @@
-import {createSlice} from '@reduxjs/toolkit';
-import { refreshUser, logIn } from '../auth/operation';
-import {
-  addIncome,
-  getIncome,
-  addExpense,
-  getExpense,
-  Delete,
-  getAllTransactions,
-  updateBal,
-} from './operation';
+import { createSlice } from "@reduxjs/toolkit";
+import { addExpenseTransactionThunk, addIncomeTransactionThunk, delateTransactionThunk, getExpenseCategoriesThunk, getExpenseTransactionsByThunk, getIncomeCategoriesThunk, getIncomeTransactionsByThunk } from "./operation";
+
 const initialState = {
-  newBalance: 0,
+  transactions: [],
+  category: [],
   isLoading: false,
   error: null,
-  incomes: {
-    incomeTransactions: [],
-    monthsStats: {},
-  },
-  expences: {
-    expectedTransactions: [],
-    monthsStats: {},
-  },
-  allTransactions: [],
-};
-export const handlePending = state => {
-  state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
-
-export const transactionsSlice = createSlice({
-  name: 'transactions',
+export const transactionSlice = createSlice({
+  name: 'transaction',
   initialState,
-  reducers: {
-    updateAuthBalance: (state, action) => {
-      console('test');
-      console.log(action.payload);
-      state.newBalance = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
-
-      // Add income
-      .addCase(addIncome.pending, handlePending)
-      .addCase(addIncome.fulfilled, (state, action) => {
-        state.newBalance = action.payload.newBalance;
-        state.incomes.incomeTransactions.push(action.payload.transaction);
-        state.allTransactions.push(action.payload.transaction);
-        state.isLoading = false;
+      .addCase(addExpenseTransactionThunk.pending, state => {
+        state.isLoading = true;
       })
-      .addCase(addIncome.rejected, handleRejected)
-
-      // Get Income
-      .addCase(getIncome.pending, handlePending)
-      .addCase(getIncome.fulfilled, (state, action) => {
-        state.incomes.incomeTransactions = action.payload.incomes;
-        state.incomes.monthsStats = action.payload.monthsStats;
+      .addCase(addExpenseTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+        state.transactions = [...state.transactions, payload];
       })
-      .addCase(getIncome.rejected, handleRejected)
-
-      // Add Expense
-      .addCase(addExpense.pending, handlePending)
-      .addCase(addExpense.fulfilled, (state, action) => {
-        state.newBalance = action.payload.newBalance;
-        state.expences.expenseTransactions.push(action.payload.transaction);
-        state.allTransactions.push(action.payload.transaction);
+      .addCase(addExpenseTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
+        state.error = payload;
       })
-      .addCase(addExpense.rejected, handleRejected)
-
-      // Get Expenses
-      .addCase(getExpense.pending, handlePending)
-      .addCase(getExpense.fulfilled, (state, action) => {
-        state.expences.expenseTransactions = action.payload.expenses;
-        state.expences.monthsStats = action.payload.monthsStats;
-        state.isLoading = false;
+      .addCase(getExpenseTransactionsByThunk.pending, state => {
+        state.isLoading = true;
       })
-      .addCase(getExpense.rejected, handleRejected)
-
-      // Update Balance
-      .addCase(updateBal.pending, handlePending)
-      .addCase(updateBal.fulfilled, (state, action) => {
-        state.newBalance = action.payload.newBalance;
+      .addCase(
+        getExpenseTransactionsByThunk.fulfilled,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.transactions = payload;
+        }
+      )
+      .addCase(getExpenseTransactionsByThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
+        state.error = payload;
       })
-      .addCase(updateBal.rejected, handleRejected)
-
-      // Delete Transaction
-      .addCase(Delete.pending, handlePending)
-      .addCase(Delete.fulfilled, (state, action) => {
-        state.newBalance = action.payload.newBalance;
+      .addCase(delateTransactionThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(delateTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.allTransactions = state.allTransactions.filter(
-          el => el._id !== action.payload.id
+        const indexElem = state.transactions.findIndex(
+          item => item.id === payload.id
         );
-        state.incomes.incomeTransactions =
-          state.incomes.incomeTransactions.filter(
-            el => el._id !== action.payload.id
-          );
-        state.expences.expenseTransactions =
-          state.expences.expenseTransactions.filter(
-            el => el._id !== action.payload.id
-          );
+        state.transactions.splice(indexElem, 1);
       })
-      .addCase(Delete.rejected, handleRejected)
-
-      // Get all transactions / for mobile devices ?
-      .addCase(getAllTransactions.pending, handlePending)
-      .addCase(getAllTransactions.fulfilled, (state, action) => {
-        state.newBalance = action.payload.balance;
-        state.allTransactions = action.payload.transactions;
+      .addCase(delateTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
+        state.error = payload;
       })
-      .addCase(getAllTransactions.rejected, handleRejected)
-
-      // refresh user
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        const { balance, transactions } = action?.payload;
-        state.newBalance = balance;
-        state.allTransactions = transactions;
+      .addCase(getExpenseCategoriesThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getExpenseCategoriesThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+        state.category = payload;
       })
-      .addCase(refreshUser.rejected, handleRejected)
-
-      // login
-      .addCase(logIn.pending, handlePending)
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.newBalance = action.payload.userData.balance;
+      .addCase(getExpenseCategoriesThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       })
-      .addCase(logIn.rejected, handleRejected);
+      .addCase(addIncomeTransactionThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(addIncomeTransactionThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.transactions = [...state.transactions, payload];
+      })
+      .addCase(addIncomeTransactionThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getIncomeTransactionsByThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getIncomeTransactionsByThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.category = payload;
+      })
+      .addCase(getIncomeTransactionsByThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(getIncomeCategoriesThunk.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getIncomeCategoriesThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.category = payload;
+      })
+      .addCase(getIncomeCategoriesThunk.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
   },
 });
-
-export const transactionsReduser = transactionsSlice.reducer;
-export const { updateAuthBalance } = transactionsSlice.actions;
+export const transactionReducer = transactionSlice.reducer;

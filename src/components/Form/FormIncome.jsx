@@ -1,20 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import useMediaQuery from '@mui/material/useMediaQuery';
 import moment from 'moment';
-// import { useTranslation } from 'react-i18next';
-// import { toast } from 'react-toastify';
-
 import icon from '../../img/symbol-defs.svg';
-
-// import { addTransaction } from 'redux/transaction/operations';
-// import { selectOperationType } from 'redux/transaction/selectors';
-
-// import { Button } from 'components/UI/Button/Button';
-
 import { customStyles } from './customStyles';
-
+import { ModalButtonOrange } from 'components/ModalLogOut/ModalButtonOrange';
+import { ModalButtonWhite } from 'components/ModalLogOut/ModalButtonWhite';
 import {
   ButtonWrapper,
   CalculatorIcon,
@@ -28,42 +19,58 @@ import {
   InputWrapper,
   SelectInput,
 } from './Form.styled';
+import { getIncomeCategoriesThunk, addIncomeTransactionThunk } from 'redux/transactions/operation';
+import { selectCategory } from 'redux/transactions/transactions-selectors';
+import { selectUser } from 'redux/selector';
 
-import { ModalButtonOrange } from 'components/ModalLogOut/ModalButtonOrange';
-import { ModalButtonWhite } from 'components/ModalLogOut/ModalButtonWhite';
 
-const OperationsForm = ({ value }) => {
+
+const OperationsForm = () => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
-  // const { t } = useTranslation();
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
-
   const dispatch = useDispatch();
-  // const type = useSelector(selectOperationType);
+  const categoriesArray = useSelector(selectCategory);
+  const isUser = useSelector(selectUser); 
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    if (description.trim().length === 0 || !category || !amount) {
-      return
-      // toast.warning('Missing required fields');
-    }
-    const userEnteredData = {
-      // operation: type,
-      description: description,
-      date: date,
-      category: category.value,
-      amount: amount,
-      month: moment(date).format('MMMM'),
-      year: moment(date).format('YYYY'),
-      currency: 'UAH',
-    };
-    // console.log(userEnteredData);
-    // dispatch(addTransaction(userEnteredData));
-    resetForm();
-    return;
+
+  useEffect(() => {
+    if (!isUser) {
+return
+}
+    dispatch(getIncomeCategoriesThunk()); 
+  }, [dispatch]);
+
+
+  const handleSubmit = evt => { 
+    evt.preventDefault(); 
+    if (description.trim().length === 0  || !amount) return;// toast.warning('Missing required fields'); 
+
+    dispatch( 
+      addIncomeTransactionThunk({ 
+        description, 
+        amount: Number(amount), 
+        category, 
+        date, 
+      }) 
+      // category: category.value,
+       // month: moment(date).format('MMMM'),
+      // year: moment(date).format('YYYY'),
+      // currency: 'UAH'
+    ); 
+    handleClear()
+  }; 
+
+  const handleClear = () => { 
+    setDescription(''); 
+    setAmount(''); 
+    setCategory(''); 
+    setDate(moment(new Date()).format('YYYY-MM-DD'));
   };
+
+
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -76,41 +83,14 @@ const OperationsForm = ({ value }) => {
       case 'amount':
         setAmount(value);
         break;
-
+        case 'category':
+        setCategory(value);
+        break;
       default:
         break;
     }
   };
-
-  const resetForm = () => {
-    setDate(moment(new Date()).format('YYYY-MM-DD'));
-    setDescription('');
-    setCategory('');
-    setAmount('');
-  };
-
-  useEffect(() => {
-    if (value) {
-      resetForm();
-    }
-  }, [value]);
-
-  // let actualOptions = '';
-  // if (type === 'expenses') {
-  //   actualOptions = expensesCategory;
-  // } else {
-  //   actualOptions = incomeCategory;
-  // }
-  // const ProductCateg = t('Product category', { returnObjects: true });
-  // const Typeofincome = t('Type of income', { returnObjects: true });
-
-  // let actualPlaceholder = '';
-  // if (type === 'expenses') {
-  //   actualPlaceholder = ProductCateg;
-  // } else {
-  //   actualPlaceholder = Typeofincome;
-  // }
-
+  
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
@@ -135,17 +115,30 @@ const OperationsForm = ({ value }) => {
           type="text"
           value={description}
         />
-        <SelectInput
+        {/* <SelectInput
           aria-label="Select"
-          // placeholder={actualPlaceholder}
+          placeholder="Product category"
           width="200px"
           styles={customStyles}
           value={category}
           onChange={setCategory}
           isSearchable={false}
-          // options={actualOptions}
+          options={categoriesArray}
           
-        />
+        /> */}
+
+        <SelectInput 
+              name="category" 
+              value={category} 
+              onChange={handleChange} 
+            > 
+              <option value="category">Product category</option> 
+              {categoriesArray?.map(item => ( 
+                <option key={item} value={item}> 
+                  {item} 
+                </option> 
+              ))} 
+            </SelectInput>
         <CountWrapper>
           <CountInput
             onChange={handleChange}
@@ -164,13 +157,13 @@ const OperationsForm = ({ value }) => {
         </CountWrapper>
       </InputWrapper>
       <ButtonWrapper>
-        <ModalButtonOrange type="submit" design="operation">
+        <ModalButtonOrange type="submit" >
           Input
         </ModalButtonOrange>
+
         <ModalButtonWhite
           type="button"
-          design="operation"
-          onClick={resetForm}
+             onClick={handleClear}
         >
           Clear
         </ModalButtonWhite>

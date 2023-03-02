@@ -1,6 +1,6 @@
 import BalanceHome from 'components/Balance/BalanceHome';
 import { Chart } from 'components/Chart/Chart';
-import OperationsForm from 'components/Form/Form';
+import OperationsForm from 'components/Form/FormIncome';
 import ExpensesPage from 'pages/Expences/Expences';
 
 // import { Summary } from 'components/Summary/Summary';

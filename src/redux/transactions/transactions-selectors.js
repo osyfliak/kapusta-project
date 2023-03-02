@@ -1,15 +1,14 @@
-const getTotalBalance = state => state.wallet.totalBalance;
-const getMonthlyBalances = state => state.wallet.monthlyBalancesYear;
-const getTransactionsPerDay = state => state.wallet.transactionsDay;
-const getTransactionsPerMonth = state => state.wallet.transactionsMonthYear;
-const getLoader = state => state.wallet.loader;
-const getTransactionError = state => state.wallet.error;
+export const selectCategory = state => state.transaction.category;
+export const selectTransactions = state => state.transaction.transactions;
+export const selectIncomeSummary = state =>
+  state.transaction.incomes.monthStats;
 
-export {
-  getTotalBalance,
-  getMonthlyBalances,
-  getTransactionsPerDay,
-  getTransactionsPerMonth,
-  getLoader,
-  getTransactionError,
-};
+export const selectItems = state => state.transaction.items;
+export const selectExpenseSummary = state =>
+  state.transaction.expenses.monthStats;
+
+export const selectIncomes = state => state.transaction.incomes.incomes;
+
+export const selectExpenses = state => state.transaction.expenses.expenses;
+
+export const selectUser = state => state.auth.user.email;
