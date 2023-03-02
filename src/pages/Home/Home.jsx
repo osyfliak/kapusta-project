@@ -2,7 +2,7 @@ import BalanceHome from 'components/Balance/BalanceHome';
 import { Chart } from 'components/Chart/Chart';
 import FormExpenses from 'components/Form/FormExpenses';
 import FormIncome from 'components/Form/FormIncome';
-import ExpensesPage from 'pages/Expences/Expences';
+// import ExpensesPage from 'pages/Expences/Expences';
 
 // import { Summary } from 'components/Summary/Summary';
 import React from 'react';
@@ -16,7 +16,7 @@ export const Home = () => {
       <BalanceHome />
       <FormExpenses/>
       {/* <Summary /> */}
-      <ExpensesPage />
+      {/* <ExpensesPage /> */}
       <Chart />
         <FormIncome />
     

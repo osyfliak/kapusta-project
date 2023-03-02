@@ -11,11 +11,11 @@ export default function ExpensesPage() {
     const balance = useSelector(selectBalance);
     const color = 'red';
   
-    useEffect(() => {
-      if (user) {
-        dispatch(getExpense());
-      }
-    }, [dispatch, user, balance]);
+    // useEffect(() => {
+    //   if (user) {
+    //     dispatch(getExpense());
+    //   }
+    // }, [dispatch, user, balance]);
   
     return (
       <>
