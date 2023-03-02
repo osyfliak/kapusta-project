@@ -6,6 +6,7 @@ const initialState = {
   currentPeriod: { month: '', year: '' },
   isLoadinng: false,
   error: null,
+  allSummaryReports: [],
 };
 const balanceSlice = createSlice({
   name: 'balance',

@@ -1,105 +1,104 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  addTransactionIncome,
-  getTransactionIncome,
   addTransactionExpense,
-  getTransactionExpense,
+  addTransactionIncome,
   deleteTransaction,
-  //   getTransactionIncomeCategories,
-  //   getTransactionExpenseCategories,
-  //   getTransactionPeriodData,
-  updateBalance,
-  fullUserInfoAPI,
+  getTransactionExpense,
+  getTransactionExpenseCategories,
+  getTransactionIncome,
+  getTransactionIncomeCategories,
+  getTransactionPeriodData,
 } from '../../services/kapusta-api';
 
 
-//addIncome
-export const addIncome = createAsyncThunk(
-  'transactions/addIncome',
-  async (value, thunkApi) => {
+export const addExpenseTransactionThunk = createAsyncThunk(
+  'expenses/addTransaction',
+  async (transactionData, { rejectWithValue }) => {
     try {
-      const response = await addTransactionIncome(value);
-      return response;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-// getIncome
-export const getIncome = createAsyncThunk(
-  'transactions/getIncome',
-  async (_, thunkAPI) => {
-    try {
-      const data = await getTransactionIncome();
+      const data = await addTransactionExpense(transactionData);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const getExpenseTransactionsByThunk = createAsyncThunk(
+  'expenses/getTransaction',
+  async (transactionData, { rejectWithValue }) => {
+    try {
+      const data = await getTransactionExpense(transactionData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const getExpenseCategoriesThunk = createAsyncThunk(
+  'expenses/getExpenseCategories',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getTransactionExpenseCategories();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const delateTransactionThunk = createAsyncThunk(
+  'expenses/delateTransaction',
+  async (id, { rejectWithValue }) => {
+    try {
+      await deleteTransaction(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
 
-// addExpense
-export const addExpense = createAsyncThunk(
-    'transactions/addExpense',
-    async (value, thunkAPI) => {
-      try {
-        const data = await addTransactionExpense(value);
-        return data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+/*income */
+export const addIncomeTransactionThunk = createAsyncThunk(
+  'income/addTransaction',
+  async (transactionData, { rejectWithValue }) => {
+    try {
+      const data = await addTransactionIncome(transactionData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
+export const getIncomeTransactionsByThunk = createAsyncThunk(
+  'income/getTransaction',
+  async (transactionData, { rejectWithValue }) => {
+    try {
+      const data = await getTransactionIncome(transactionData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const getIncomeCategoriesThunk = createAsyncThunk(
+  'income/getExpenseCategories',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await getTransactionIncomeCategories();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
-// getExpense
-export const getExpense = createAsyncThunk(
-    'transactions/getExpense',
-    async (_, thunkAPI) => {
-      try {
-        const data = await getTransactionExpense();
-        return data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
+export const getTransactionsThunk = createAsyncThunk(
+  'transaction/byDate',
+  async (date, { rejectWithValue }) => {
+    try {
+      const data = await getTransactionPeriodData(date);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
-
-// delete
-  export const Delete = createAsyncThunk(
-    'transactions/deleteTransaction',
-    async (id, thunkAPI) => {
-      try {
-        const { newBalance } = await deleteTransaction(id);
-        return { newBalance, id };
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
-
-// Refresh
-export const getAllTransactions = createAsyncThunk(
-    'transactions/getAllTransactions',
-    async (_, thunkAPI) => {
-      try {
-        const data = await fullUserInfoAPI();
-        return data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
- 
-// Update balance Thunk
-export const updateBal = createAsyncThunk(
-    'transactions/updateBalance',
-    async (value, thunkAPI) => {
-      try {
-        const data = await updateBalance(value);
-        return data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
+  }
+);

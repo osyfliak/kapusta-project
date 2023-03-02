@@ -20,15 +20,16 @@ export default function ExpensesPage() {
   const user = useSelector(selectIsLoggedIn);
   const balance = useSelector(selectBalance);
   const color = 'red';
-
-  useEffect(() => {
-    if (user) {
-      dispatch(getExpense());
-    }
-  }, [dispatch, user, balance]);
+ 
+  // useEffect(() => {
+  // //   if (user) {
+  // //     dispatch(getExpense());
+  // //   }
+  // // }, [dispatch, user, balance]);
 
   return (
     <>
+
       {/* {<Form />} */}
 {/* <Block>  */}
   <Table/>
@@ -38,6 +39,7 @@ export default function ExpensesPage() {
       <Summary />
       {/* </Block> */}
      
+
     </>
   );
 }
