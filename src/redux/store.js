@@ -13,7 +13,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { transactionsPeriodReducer } from './chart/transactions-slice';
+// import { transactionsPeriodReducer } from './chart/transactions-slice';
 import { transactionReducer } from './transactions/transactions-slice';
 
 const authPersistConfig = {
@@ -25,7 +25,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReduser),
-    transactions: transactionsPeriodReducer,
+    // transactions: transactionsPeriodReducer,
     balance: balanceReducer,
     transaction: transactionReducer,
   },
