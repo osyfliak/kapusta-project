@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Summary } from '../../components/Summary/Summary';
-import DenseTable from 'components/Table/Table'
+import DenseTable from 'components/Table/Table';
 // import {Form} from '../../components/Form/Form'
- 
+
 import {
   selectBalance,
   // selectExpenseTransactions,
@@ -18,7 +18,7 @@ export default function ExpensesPage() {
   const user = useSelector(selectIsLoggedIn);
   const balance = useSelector(selectBalance);
   const color = 'red';
- 
+
   useEffect(() => {
     if (user) {
       dispatch(getExpense());
@@ -27,14 +27,13 @@ export default function ExpensesPage() {
 
   return (
     <>
-        {/* {<Form />} */}
-        
-          <DenseTable>
-            {/* {allExpenses} */}
-            {color}
-          </DenseTable>
-          <Summary />
-        
+      {/* {<Form />} */}
+
+      <DenseTable>
+        {/* {allExpenses} */}
+        {color}
+      </DenseTable>
+      <Summary />
     </>
   );
 }
