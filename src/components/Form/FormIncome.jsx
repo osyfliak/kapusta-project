@@ -18,11 +18,19 @@ import {
   InputWrapper,
   SelectInput,
 } from './Form.styled';
+
 import {
   getIncomeCategoriesThunk,
   addIncomeTransactionThunk,
   getIncomeTransactionsByThunk,
 } from 'redux/transactions/operation';
+
+
+
+import { setTypeAction } from 'redux/transactions/transactions-slice';
+
+
+
 import { selectCategoryIncome } from 'redux/transactions/transactions-selectors';
 import { selectUser } from 'redux/selector';
 
@@ -38,9 +46,14 @@ const FormIncome = () => {
 
   useEffect(() => {
     if (!isUser) {
+
       return;
     }
     dispatch(getIncomeCategoriesThunk());
+
+
+    dispatch(setTypeAction("incomes"));
+
   }, [dispatch, isUser]);
 
   const handleSubmit = evt => {
