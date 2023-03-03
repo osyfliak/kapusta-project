@@ -9,8 +9,10 @@ export const selectItems = state => state.transaction.items;
 export const selectExpenseSummary = state =>
   state.transaction.expenses.monthsStats;
 
-export const selectIncomes = state => state.transaction.incomes.incomes;
+export const selectIncomes = state => state.transaction.incomes;
 
-export const selectExpenses = state => state.transaction.expenses.expenses;
+
+export const selectExpenses = state => state.transaction.expenses;
+
 
 export const selectUser = state => state.auth.user.email;
