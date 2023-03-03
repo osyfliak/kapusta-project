@@ -23,10 +23,9 @@ import { getIncomeCategoriesThunk, addIncomeTransactionThunk, getIncomeTransacti
 import { setTypeAction } from 'redux/transactions/transactions-slice';
 
 
+
 import { selectCategoryIncome } from 'redux/transactions/transactions-selectors';
 import { selectUser } from 'redux/selector';
-
-
 
 const FormIncome = () => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
@@ -36,42 +35,43 @@ const FormIncome = () => {
   const [amount, setAmount] = useState('');
   const dispatch = useDispatch();
   const categoriesArray = useSelector(selectCategoryIncome);
-  const isUser = useSelector(selectUser); 
-
+  const isUser = useSelector(selectUser);
 
   useEffect(() => {
     if (!isUser) {
-return
-}
-    dispatch(getIncomeCategoriesThunk()); 
+
+      return;
+    }
+    dispatch(getIncomeCategoriesThunk());
+
+
     dispatch(setTypeAction("incomes"));
+
   }, [dispatch, isUser]);
 
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    if (description.trim().length === 0 || !amount) return; // toast.warning('Missing required fields');
 
-  const handleSubmit = evt => { 
-    evt.preventDefault(); 
-    if (description.trim().length === 0  || !amount) return;// toast.warning('Missing required fields'); 
-
-    dispatch( 
-      addIncomeTransactionThunk({ 
-        description, 
-        amount: Number(amount), 
-        category, 
-        date, 
-      }) 
-    ); 
-    dispatch(getIncomeTransactionsByThunk());
-    handleClear()
-  }; 
-
-  const handleClear = () => { 
-    setDescription(''); 
-    setAmount(''); 
-    setCategory(''); 
-    setDate(moment(new Date()).format('YYYY-MM-DD'));
+    dispatch(
+      addIncomeTransactionThunk({
+        description,
+        amount: Number(amount),
+        category,
+        date,
+      })
+    )
+      .unwrap()
+      .then(() => dispatch(getIncomeTransactionsByThunk()));
+    handleClear();
   };
 
-
+  const handleClear = () => {
+    setDescription('');
+    setAmount('');
+    setCategory('');
+    setDate(moment(new Date()).format('YYYY-MM-DD'));
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -84,14 +84,14 @@ return
       case 'amount':
         setAmount(value);
         break;
-        case 'category':
+      case 'category':
         setCategory(value);
         break;
       default:
         break;
     }
   };
-  
+
   return (
     <FormWrapper autoComplete="off" onSubmit={handleSubmit}>
       <InputWrapper>
@@ -109,25 +109,21 @@ return
           </CalendarIcon>
         </DateWrapper>
         <DescriptionInput
-          placeholder= 'Product description'
+          placeholder="Product description"
           name="description"
           aria-label="Text"
           onChange={handleChange}
           type="text"
           value={description}
         />
-        <SelectInput 
-              name="category" 
-              value={category} 
-              onChange={handleChange} 
-            > 
-              <option value="category">Product category</option> 
-              {categoriesArray?.map(item => ( 
-                <option key={item} value={item}> 
-                  {item} 
-                </option> 
-              ))} 
-            </SelectInput>
+        <SelectInput name="category" value={category} onChange={handleChange}>
+          <option value="category">Product category</option>
+          {categoriesArray?.map(item => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </SelectInput>
         <CountWrapper>
           <CountInput
             onChange={handleChange}
@@ -146,20 +142,14 @@ return
         </CountWrapper>
       </InputWrapper>
       <ButtonWrapper>
-        <ModalButtonOrange type="submit" >
-          Input
-        </ModalButtonOrange>
+        <ModalButtonOrange type="submit">Input</ModalButtonOrange>
 
-        <ModalButtonWhite
-          type="button"
-             onClick={handleClear}
-        >
+        <ModalButtonWhite type="button" onClick={handleClear}>
           Clear
         </ModalButtonWhite>
       </ButtonWrapper>
     </FormWrapper>
   );
 };
-
 
 export default FormIncome;

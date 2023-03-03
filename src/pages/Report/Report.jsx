@@ -7,6 +7,7 @@ import {Categories} from 'components/Categories/Categories'
 import { useDispatch } from 'react-redux'
 import { setCategoryAction } from 'redux/transactions/transactions-slice'
 // import ReportsBalance from 'components/ReportsBalance/ReportsBalance'
+import ReportsBalance from 'components/TotalReportsBalance/TotalReportsBalance'
 
 export const Report = () => {
 const dispatch = useDispatch();

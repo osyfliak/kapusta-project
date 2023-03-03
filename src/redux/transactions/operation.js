@@ -10,7 +10,6 @@ import {
   getTransactionPeriodData,
 } from '../../services/kapusta-api';
 
-
 export const addExpenseTransactionThunk = createAsyncThunk(
   'transaction/addExpenseTransaction',
   async (transactionData, { rejectWithValue }) => {
