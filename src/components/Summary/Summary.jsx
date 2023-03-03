@@ -13,6 +13,8 @@ import { StyledSummary, Title, List, Month } from './Summary.styled';
 
 // Function to merge Incomes and Expenses objects
 function mergeObjectsIntoEntries(obj1, obj2) {
+  if (!obj1 || !obj2) return [];
+
   const merged = {};
   for (let prop in obj1) {
     if (obj2.hasOwnProperty(prop)) {
@@ -41,6 +43,7 @@ const formatNumber = num => {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 };
 
+// SUMMARY Component
 export const Summary = () => {
   const allIncomes = useSelector(selectIncomeSummary);
   const allExpenses = useSelector(selectExpenseSummary);
@@ -48,9 +51,6 @@ export const Summary = () => {
 
   useEffect(() => {
     dispatch(getExpenseTransactionsByThunk());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getIncomeTransactionsByThunk());
   }, [dispatch]);
 
