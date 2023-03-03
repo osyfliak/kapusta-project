@@ -8,7 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { selectExpenses } from 'redux/transactions/transactions-selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTransactionThunk, getExpenseTransactionsByThunk } from 'redux/transactions/operation';
+import {
+  deleteTransactionThunk,
+  getExpenseTransactionsByThunk,
+} from 'redux/transactions/operation';
 import { selectUser } from 'redux/selector';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -41,7 +44,6 @@ export default function DenseTable() {
         </TableHead>
         <TableBody>
           {expensesList?.map(object => (
-         
             <TableRow
               key={object._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -53,7 +55,10 @@ export default function DenseTable() {
               <TableCell align="right">{object.category}</TableCell>
               <TableCell align="right">{object.amount}</TableCell>
               <TableCell align="right">
-                <IconButton aria-label="delete" onClick={() => handleClick(object._id)}>
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => handleClick(object._id)}
+                >
                   <DeleteIcon />
                 </IconButton>
               </TableCell>
