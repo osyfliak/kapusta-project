@@ -100,7 +100,6 @@ export const getTransactionPeriodData = async date => {
 };
 
 export const updateBalance = async request => {
-
   const { data } = await privateApi.patch('/user/balance', request);
 
   return data;
