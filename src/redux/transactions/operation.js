@@ -27,12 +27,15 @@ export const getExpenseTransactionsByThunk = createAsyncThunk(
   async (transactionData, { rejectWithValue }) => {
     try {
       const data = await getTransactionExpense(transactionData);
+      console.log(data);
+      
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
 export const getExpenseCategoriesThunk = createAsyncThunk(
   'transaction/getExpenseCategories',
   async (_, { rejectWithValue }) => {

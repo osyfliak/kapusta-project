@@ -18,8 +18,11 @@ import {
   InputWrapper,
   SelectInput,
 } from './Form.styled';
+
 import { getIncomeCategoriesThunk, addIncomeTransactionThunk } from 'redux/transactions/operation';
 import { setTypeAction } from 'redux/transactions/transactions-slice';
+
+
 import { selectCategoryIncome } from 'redux/transactions/transactions-selectors';
 import { selectUser } from 'redux/selector';
 
@@ -57,6 +60,7 @@ return
         date, 
       }) 
     ); 
+    dispatch(getIncomeTransactionsByThunk());
     handleClear()
   }; 
 
