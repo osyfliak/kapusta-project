@@ -11,6 +11,7 @@ import {
   Text,
 } from './ReportsCurrentPeriod.styled';
 import { getTransactionPeriodDataThunk } from 'redux/transactions/operation';
+import { setCategoryAction } from 'redux/transactions/transactions-slice';
 
 const ReportsCurrentPeriod = () => {
   const [newDate, setNewDate] = useState(() => new Date());
@@ -23,8 +24,9 @@ const ReportsCurrentPeriod = () => {
         monthNum: moment(newDate).format('MM'),
         year: moment(newDate).format('yyyy'),
       })
-    );
+    );    
     dispatch(getTransactionPeriodDataThunk(`${moment(newDate).format('yyyy')}-${moment(newDate).format('MM').padStart(2,'0')}`)); 
+    dispatch(setCategoryAction(null));
   }, [dispatch, newDate]);
 
       

@@ -64,9 +64,22 @@ export const Summary = () => {
     allExpenses
   );
 
-  console.log('allIncomes', allIncomes);
-  console.log('allExpenses', allExpenses);
-  console.log('monthlySummaryEntries', monthlySummaryEntries);
+
+  // const translatedObj = {
+  //   январь: ['JANUARY', monthlySummaryEntries[0][1]],
+  //   февраль: ['FEBRUARY', monthlySummaryEntries[1][1]],
+  //   март: ['MARCH', monthlySummaryEntries[2][1]],
+  //   апрель: ['APRIL', monthlySummaryEntries[3][1]],
+  //   май: ['MAY', monthlySummaryEntries[4][1]],
+  //   июнь: ['JUNE', monthlySummaryEntries[5][1]],
+  //   июль: ['JULY', monthlySummaryEntries[6][1]],
+  //   август: ['AUGUST', monthlySummaryEntries[7][1]],
+  //   сентябрь: ['SEPTEMBER', monthlySummaryEntries[8][1]],
+  //   октябрь: ['OCTOBER', monthlySummaryEntries[9][1]],
+  //   ноябрь: ['NOVEMBER', monthlySummaryEntries[10][1]],
+  //   декабрь: ['DECEMBER', monthlySummaryEntries[11][1]],
+  // };
+
 
   const translate = monthlySummaryEntries => ({
     Январь: ['JANUARY', monthlySummaryEntries[0][1]],

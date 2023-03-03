@@ -1,17 +1,21 @@
-import React from 'react'
-import BalanceReports from 'components/Balance/BalanceReports'
+import React from 'react';
+import BalanceReports from 'components/Balance/BalanceReports';
 
-import Container from 'components/Container/Container'
-import { Chart } from 'components/Chart/Chart'
-// import ReportsBalance from 'components/ReportsBalance/ReportsBalance'
+import Container from 'components/Container/Container';
+import { Chart } from 'components/Chart/Chart';
+import { Categories } from 'components/Categories/Categories';
+import { TotalReportsBalance } from 'components/TotalReportsBalance/TotalReportsBalance';
 
-export const Report = () => {
-  return (
+
+export const Report = () => {  
+
+        return (
     <Container>
-        <BalanceReports /> 
+      <BalanceReports />
+      <TotalReportsBalance />
+
+      <Categories/>
       <Chart />
     </Container>
-  )
-
-}
-  // <BalanceReports />
+  );
+};

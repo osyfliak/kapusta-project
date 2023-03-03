@@ -7,10 +7,10 @@ export const signUpUserThunk = createAsyncThunk(
     try {
       const data = await register(user);
       //token.set(data.accessToken);
-      console.log("user: ",data);
+ 
       return data;    
     } catch {
-        console.log("!!!!");
+     
       return rejectWithValue();
     }
   }
@@ -22,7 +22,7 @@ export const loginUserThunk = createAsyncThunk(
       try {
         const data = await login(user);
         //token.set(data.accessToken);
-        console.log("user: ",data);
+     
         return data;    
       } catch {
         return rejectWithValue();
@@ -36,7 +36,7 @@ export const loginUserThunk = createAsyncThunk(
       try {
         await logout();
         token.unSet();
-        console.log("logout ");
+   
         //return data;    
       } catch {
         return rejectWithValue();

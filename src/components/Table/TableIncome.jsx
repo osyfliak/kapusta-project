@@ -8,8 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { selectIncomes } from 'redux/transactions/transactions-selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIncomeTransactionsByThunk } from 'redux/transactions/operation';
+import { deleteTransactionThunk, getIncomeTransactionsByThunk } from 'redux/transactions/operation';
 import { selectUser } from 'redux/selector';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function DenseTable() {
     const isUser = useSelector(selectUser);
@@ -21,7 +23,10 @@ export default function DenseTable() {
         }
         dispatch(getIncomeTransactionsByThunk());
 
-    }, [dispatch, isUser]);
+  }, [dispatch, isUser]);
+    const handleClick = id => {
+    dispatch(deleteTransactionThunk(id));
+  };
     
   
 
@@ -50,6 +55,11 @@ export default function DenseTable() {
               </TableCell>
               <TableCell align="right">{object.category}</TableCell>
               <TableCell align="right">{object.amount}</TableCell>
+               <TableCell align="right">
+                <IconButton aria-label="delete" onClick={() => handleClick(object._id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

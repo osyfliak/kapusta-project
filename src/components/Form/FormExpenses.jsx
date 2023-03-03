@@ -26,6 +26,7 @@ import {
 import { selectCategoryExpenses } from 'redux/transactions/transactions-selectors';
 import { setTypeAction } from 'redux/transactions/transactions-slice';
 import { selectUser } from 'redux/selector';
+import { toast } from 'react-toastify';
 
 const FormExpenses = () => {
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
@@ -46,7 +47,17 @@ const FormExpenses = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    if (description.trim().length === 0 || !amount) return; // toast.warning('Missing required fields');
+    if (description.trim().length === 0 || !amount || !category) 
+    return toast.info('Enter the data in the form', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });; // toast.warning('Missing required fields');
 
     dispatch(
       addExpenseTransactionThunk({
