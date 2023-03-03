@@ -39,7 +39,7 @@ export default function DenseTable() {
         </TableHead>
         <TableBody>
           {incomesList?.map(object => (
-            <TableRow
+            <TableRow key={object._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">

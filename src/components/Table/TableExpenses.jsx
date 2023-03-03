@@ -31,7 +31,7 @@ export default function DenseTable() {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
-          <TableRow>
+          <TableRow >
             <TableCell align="right">Date</TableCell>
             <TableCell align="right">Description</TableCell>
             <TableCell align="right">Category</TableCell>
@@ -41,7 +41,7 @@ export default function DenseTable() {
         <TableBody>
           
           {expensesList?.map(object => (
-            <TableRow
+            <TableRow key= {object._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">{object.date.split('-').join('.')}</TableCell>
