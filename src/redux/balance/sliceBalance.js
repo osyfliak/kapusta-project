@@ -4,7 +4,7 @@ import { addExpenseTransactionThunk, addIncomeTransactionThunk } from 'redux/tra
 import { setUserBalance } from './operations';
 const initialState = {
   balance: 0,
-  currentPeriod: { month: '', year: '' },
+  currentPeriod: { month: '', year: '', monthNum: ''},
   isLoadinng: false,
   error: null,
   allSummaryReports: [],
