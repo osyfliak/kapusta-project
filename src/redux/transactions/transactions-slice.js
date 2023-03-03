@@ -11,31 +11,31 @@ import {
 } from './operation';
 
 const mockData = {
-  "incomes": {
-    "total": 12000,
-    "incomesData": {
-      "З/П": {
-        "total": 12000,
-        "Аванс": 5000,
-        "Основная": 7000
-      }
-    }
-  },
-  "expenses": {
-    "total": 5200,
-    "expensesData": {
-      "Транспорт": {
-        "total": 4000,
-        "СТО": 3500,
-        "Мойка": 500
+  incomes: {
+    total: 12000,
+    incomesData: {
+      'З/П': {
+        total: 12000,
+        Аванс: 5000,
+        Основная: 7000,
       },
-      "Всё для дома": {
-        "total": 1200,
-        "Вазон": 150,
-        "Шкаф-купе": 1050
-      }
-    }
-  }
+    },
+  },
+  expenses: {
+    total: 5200,
+    expensesData: {
+      Транспорт: {
+        total: 4000,
+        СТО: 3500,
+        Мойка: 500,
+      },
+      'Всё для дома': {
+        total: 1200,
+        Вазон: 150,
+        'Шкаф-купе': 1050,
+      },
+    },
+  },
 };
 
 const initialState = {
@@ -55,9 +55,7 @@ const initialState = {
   type: 'expenses',
 };
 
-
-
-const handlePending = (state) => {
+const handlePending = state => {
   state.isLoading = true;
 };
 const handleRejected = (state, { payload }) => {
@@ -109,10 +107,8 @@ export const transactionSlice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        const indexElem = state.transactions.findIndex(
-          item => item.id === payload.id
-        );
-        state.transactions.splice(indexElem, 1);
+        state.expenses = state.expenses.filter(el => el._id !== payload);
+        state.incomes = state.incomes.filter(el => el._id !== payload);
       })
       .addCase(deleteTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -164,13 +160,16 @@ export const transactionSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(getTransactionPeriodDataThunk.pending, handlePending) 
+      .addCase(getTransactionPeriodDataThunk.pending, handlePending)
       .addCase(getTransactionPeriodDataThunk.rejected, handleRejected)
-      .addCase(getTransactionPeriodDataThunk.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.periodItems = payload;
-});
+      .addCase(
+        getTransactionPeriodDataThunk.fulfilled,
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.periodItems = payload;
+        }
+      );
   },
 });
 export const transactionReducer = transactionSlice.reducer;
-export const {setCategoryAction, setTypeAction} = transactionSlice.actions;
+export const { setCategoryAction, setTypeAction } = transactionSlice.actions;
