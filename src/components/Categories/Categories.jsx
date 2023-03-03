@@ -235,7 +235,7 @@ const Categories = ({ onClick }) => {
 			</CategoriesStats>
 			{filter && (
 				<BoxForSchedule>
-					<Chart data={filtredData()} />{' '}
+					<Chart/>{' '}
 				</BoxForSchedule>
 			)}
 		</>
