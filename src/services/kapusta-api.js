@@ -31,7 +31,7 @@ export const googleLoginAPI = async () => {
       accept: '*/*',
     },
   });
-  console.log('response', response);
+
   return response;
 };
 
@@ -96,7 +96,7 @@ export const getTransactionExpenseCategories = async () => {
 
 export const getTransactionPeriodData = async date => {
   //?date=";
-  console.log('date: ',date);
+
   const { data } = await privateApi.get('/transaction/period-data', {params: {date}});
   return data;
 };

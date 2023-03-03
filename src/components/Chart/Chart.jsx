@@ -64,7 +64,7 @@ export function Chart() {
       values = entries.map(value => value[1]);      
     }else{  
       dataLikeObject = selectedType === "incomes" ? filteredData.incomesData : filteredData.expensesData;
-      console.log(dataLikeObject);
+    
       entries = Object.entries(dataLikeObject).sort((a,b) => a[1].total > b[1].total);  
       values = entries.map(value => value[1].total);   
     }

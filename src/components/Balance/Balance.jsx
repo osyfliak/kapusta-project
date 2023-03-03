@@ -35,7 +35,7 @@ const Balance = () => {
     e.preventDefault();
     const data = e.target.elements.balance.value;
     const balance = Number(data);
-    console.log(balance);
+  
     const sevedBalance = {
       newBalance: balance,
     };

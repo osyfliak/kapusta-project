@@ -59,7 +59,7 @@ export const Summary = () => {
     allExpenses
   );
 
-  console.log(monthlySummaryEntries);
+
 
   // const translatedObj = {
   //   январь: ['JANUARY', monthlySummaryEntries[0][1]],

@@ -27,7 +27,7 @@ export const getExpenseTransactionsByThunk = createAsyncThunk(
   async (transactionData, { rejectWithValue }) => {
     try {
       const data = await getTransactionExpense(transactionData);
-      console.log(data);
+
       
       return data;
     } catch (error) {
@@ -110,12 +110,12 @@ export const getTransactionPeriodDataThunk = createAsyncThunk(
   "transaction/getTransactionsPeriodData",
   async (date, { rejectWithValue }) => {
     try { 
-      console.log("before getTransactionsPeriodData");    
+  
       const data = await getTransactionPeriodData(date);
-      console.log("getTransactionsPeriodData: ",data);
+ 
       return data;
     } catch (error) {
-      console.log("rejectWithValue: ",error.message);
+     
       return rejectWithValue(error.message);
     }
   }
