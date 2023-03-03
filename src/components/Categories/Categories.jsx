@@ -5,6 +5,9 @@ import styledComponents from './CategoriesStyled';
 // import { formating } from '../Balance/Balance';
 // import { Chart } from 'components/Chart/Chart';
 import { selectTransactionsPerPeriod } from 'redux/transactions/transactions-selectors';
+import { useDispatch } from 'react-redux';
+import { setCategoryAction } from 'redux/transactions/transactions-slice';
+
 
 const {
   ListOfBalanceChanges,
@@ -15,7 +18,9 @@ const {
   BoxForSvg,
 } = styledComponents;
 
-export const Categories = ({ onClick }) => {
+export const Categories = () => {
+  const dispatch = useDispatch();
+
   const [filter, setFilter] = useState('');
   const statistics = useSelector(selectTransactionsPerPeriod);
   console.log(statistics);
@@ -43,6 +48,7 @@ export const Categories = ({ onClick }) => {
 
   const onItemClick = event => {
     setFilter(event.currentTarget.id);
+    dispatch(setCategoryAction(event.currentTarget.id));
 
     const data = statistics.expenses.expensesData;
     console.log('data', data);
@@ -90,12 +96,12 @@ export const Categories = ({ onClick }) => {
       <>
         <div>
           <BtnToggleStats type="button">
-            <svg width="10" height="10" onClick={onClick}>
+            <svg width="10" height="10" >
               <use href={`${svg}#arrow_left`} />
             </svg>
           </BtnToggleStats>
           <TitleOfBalanceChanges>Expenses</TitleOfBalanceChanges>
-          <BtnToggleStats type="button" onClick={onClick}>
+          <BtnToggleStats type="button" >
             <svg width="10" height="10">
               <use href={`${svg}#arrow_right`} />
             </svg>

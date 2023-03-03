@@ -67,7 +67,7 @@ export const transactionSlice = createSlice({
   name: 'transaction',
   initialState,
   reducers: {
-    setCategoryAction: (state, { payload }) => {
+    setCategoryAction: (state, { payload }) => {   
       state.selectCategory = payload;
     },
     setTypeAction: (state, { payload }) => {
