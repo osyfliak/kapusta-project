@@ -19,7 +19,7 @@ import {
   SelectInput,
 } from './Form.styled';
 
-import { getIncomeCategoriesThunk, addIncomeTransactionThunk } from 'redux/transactions/operation';
+import { getIncomeCategoriesThunk, addIncomeTransactionThunk, getIncomeTransactionsByThunk } from 'redux/transactions/operation';
 import { setTypeAction } from 'redux/transactions/transactions-slice';
 
 

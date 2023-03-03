@@ -11,17 +11,17 @@ export const selectExpenseSummary = state =>
 
 export const selectIncomes = state => state.transaction.incomes;
 
-
 export const selectExpenses = state => state.transaction.expenses;
 
-
 // Vasyliev
-export const selectType = (state) => state.transaction.type;
-export const selectTransactionsPerPeriod = (state) => state.transaction.periodItems;
-export const selectCategory = (state) => state.transaction.selectCategory;
+export const selectType = state => state.transaction.type;
+export const selectTransactionsPerPeriod = state =>
+  state.transaction.periodItems;
+export const selectCategory = state => state.transaction.selectCategory;
 // Vasyliev
-
 
 export const selectUser = state => state.auth.user.email;
-
-
+export const selectTransactionsTotalExpenses = state =>
+  state.transaction.periodItems.expenses.expenseTotal;
+export const selectTransactionsTotalIncome = state =>
+  state.transaction.periodItems.incomes.incomeTotal;
