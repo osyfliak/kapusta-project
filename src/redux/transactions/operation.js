@@ -12,7 +12,7 @@ import {
 
 
 export const addExpenseTransactionThunk = createAsyncThunk(
-  'expenses/addTransaction',
+  'transaction/addExpenseTransaction',
   async (transactionData, { rejectWithValue }) => {
     try {
       const data = await addTransactionExpense(transactionData);
@@ -23,7 +23,7 @@ export const addExpenseTransactionThunk = createAsyncThunk(
   }
 );
 export const getExpenseTransactionsByThunk = createAsyncThunk(
-  'expenses/getTransaction',
+  'transaction/getExpenseTransactions',
   async (transactionData, { rejectWithValue }) => {
     try {
       const data = await getTransactionExpense(transactionData);
@@ -37,7 +37,7 @@ export const getExpenseTransactionsByThunk = createAsyncThunk(
 );
 
 export const getExpenseCategoriesThunk = createAsyncThunk(
-  'expenses/getExpenseCategories',
+  'transaction/getExpenseCategories',
   async (_, { rejectWithValue }) => {
     try {
       const data = await getTransactionExpenseCategories();
@@ -47,8 +47,8 @@ export const getExpenseCategoriesThunk = createAsyncThunk(
     }
   }
 );
-export const delateTransactionThunk = createAsyncThunk(
-  'expenses/delateTransaction',
+export const deleteTransactionThunk = createAsyncThunk(
+  'transaction/deleteTransaction',
   async (id, { rejectWithValue }) => {
     try {
       await deleteTransaction(id);
@@ -61,7 +61,7 @@ export const delateTransactionThunk = createAsyncThunk(
 
 /*income */
 export const addIncomeTransactionThunk = createAsyncThunk(
-  'income/addTransaction',
+  'transaction/addIncomeTransaction',
   async (transactionData, { rejectWithValue }) => {
     try {
       const data = await addTransactionIncome(transactionData);
@@ -72,7 +72,7 @@ export const addIncomeTransactionThunk = createAsyncThunk(
   }
 );
 export const getIncomeTransactionsByThunk = createAsyncThunk(
-  'income/getTransaction',
+  'transaction/getIncomeTransactions',
   async (transactionData, { rejectWithValue }) => {
     try {
       const data = await getTransactionIncome(transactionData);
@@ -83,7 +83,7 @@ export const getIncomeTransactionsByThunk = createAsyncThunk(
   }
 );
 export const getIncomeCategoriesThunk = createAsyncThunk(
-  'income/getExpenseCategories',
+  'transaction/getIncomeCategories',
   async (_, { rejectWithValue }) => {
     try {
       const data = await getTransactionIncomeCategories();
@@ -105,3 +105,19 @@ export const getTransactionsThunk = createAsyncThunk(
     }
   }
 );
+
+export const getTransactionPeriodDataThunk = createAsyncThunk(
+  "transaction/getTransactionsPeriodData",
+  async (date, { rejectWithValue }) => {
+    try { 
+      console.log("before getTransactionsPeriodData");    
+      const data = await getTransactionPeriodData(date);
+      console.log("getTransactionsPeriodData: ",data);
+      return data;
+    } catch (error) {
+      console.log("rejectWithValue: ",error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+

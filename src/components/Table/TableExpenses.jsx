@@ -39,9 +39,15 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
+<<<<<<< chart
+          {expensesList.map(object => {
+            console.log('object.transaction: ',object.transaction);
+            return   <TableRow key={object.transaction._id}
+=======
           
           {expensesList?.map(object => (
             <TableRow key= {object._id}
+>>>>>>> dev
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">{object.date.split('-').join('.')}</TableCell>
@@ -50,7 +56,7 @@ export default function DenseTable() {
               <TableCell align="right">{object.amount}</TableCell>
               
             </TableRow>
-          ))}
+          })}
         </TableBody>
       </Table>
     </TableContainer>

@@ -3,7 +3,7 @@ import { logIn, refreshUser } from 'redux/auth/operation';
 import { setUserBalance } from './operations';
 const initialState = {
   balance: 0,
-  currentPeriod: { month: '', year: '' },
+  currentPeriod: { month: '', year: '', monthNum: ''},
   isLoadinng: false,
   error: null,
   allSummaryReports: [],
