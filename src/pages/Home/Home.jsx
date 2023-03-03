@@ -1,7 +1,5 @@
 import BalanceHome from 'components/Balance/BalanceHome';
-
 import Container from 'components/Container/Container';
-
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Test } from './Home.styled';

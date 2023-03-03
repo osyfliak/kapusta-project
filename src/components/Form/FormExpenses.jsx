@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
 import moment from 'moment';
 import icon from '../../img/symbol-defs.svg';
 import { ModalButtonOrange } from 'components/ModalLogOut/ModalButtonOrange';
@@ -26,7 +26,7 @@ import { selectCategoryExpenses } from 'redux/transactions/transactions-selector
 import { selectUser } from 'redux/selector';
 
 const FormExpenses = () => {
-  const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
+
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -126,8 +126,8 @@ const FormExpenses = () => {
             value={amount}
           />
           <CalculatorIcon
-            width={isScreenMoreTablet ? 20 : 40}
-            height={isScreenMoreTablet ? 20 : 40}
+            width= "20"
+            height= "20"
           >
             <use href={`${icon}#icon-calculator`}></use>
           </CalculatorIcon>

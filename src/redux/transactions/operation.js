@@ -35,6 +35,7 @@ export const getExpenseTransactionsByThunk = createAsyncThunk(
     }
   }
 );
+
 export const getExpenseCategoriesThunk = createAsyncThunk(
   'expenses/getExpenseCategories',
   async (_, { rejectWithValue }) => {
