@@ -136,7 +136,7 @@ const FormExpenses = () => {
       <ButtonWrapper>
         <ModalButtonOrange type="submit">Input</ModalButtonOrange>
 
-        <ModalButtonWhite type="button" onClick={handleClear}>
+        <ModalButtonWhite type="button" closeModal={handleClear}>
           Clear
         </ModalButtonWhite>
       </ButtonWrapper>
