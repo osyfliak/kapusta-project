@@ -72,6 +72,7 @@ export const transactionSlice = createSlice({
     },
     setTypeAction: (state, { payload }) => {
       state.type = payload;
+      state.selectCategory = null;
     },
   },
   extraReducers: builder => {
