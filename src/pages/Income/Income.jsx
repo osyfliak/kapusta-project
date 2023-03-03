@@ -1,6 +1,7 @@
 import FormIncome from "components/Form/FormIncome";
 import { Summary } from "components/Summary/Summary";
-import Table from "components/Table/TableExpenses";
+import TableIncome from '../../components/Table/TableIncome';
+
 // import DenseTable from "components/TableBody/TableBody";
 import { Block } from "pages/Income/Income.styled";
 // // import { useEffect } from "react";
@@ -27,7 +28,7 @@ export default function ExpensesPage() {
       <FormIncome />
 <Block> 
 
-  <Table/>
+  <TableIncome/>
         {/* {allExpenses}
         {color}
       </Table> */}

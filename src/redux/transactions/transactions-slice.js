@@ -13,6 +13,8 @@ const initialState = {
   transactions: [],
   categoryIncome: [],
   categoryExpenses: [],
+  expenses: [],
+  incomes: [],
   isLoading: false,
   error: null,
 };
@@ -41,7 +43,7 @@ export const transactionSlice = createSlice({
         getExpenseTransactionsByThunk.fulfilled,
         (state, { payload }) => {
           state.isLoading = false;
-          state.transactions = payload;
+          state.expenses = payload;
         }
       )
       .addCase(getExpenseTransactionsByThunk.rejected, (state, { payload }) => {
@@ -89,7 +91,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(getIncomeTransactionsByThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.category = payload;
+        state.incomes = payload;
       })
       .addCase(getIncomeTransactionsByThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
