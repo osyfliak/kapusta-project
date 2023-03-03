@@ -10,20 +10,24 @@ import {
   ContainerPeriod,
   Text,
 } from './ReportsCurrentPeriod.styled';
+import { getTransactionPeriodDataThunk } from 'redux/transactions/operation';
 
 const ReportsCurrentPeriod = () => {
   const [newDate, setNewDate] = useState(() => new Date());
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(() => {    
     dispatch(
       setCurrentPeriod({
         month: moment(newDate).format('MMMM'),
+        monthNum: moment(newDate).format('MM'),
         year: moment(newDate).format('yyyy'),
       })
     );
+    dispatch(getTransactionPeriodDataThunk(`${moment(newDate).format('yyyy')}-${moment(newDate).format('MM').padStart(2,'0')}`)); 
   }, [dispatch, newDate]);
 
+      
   const monthChangeLeft = () => {
     const prevDate = moment(newDate).subtract(1, 'months');
     setNewDate(prevDate);

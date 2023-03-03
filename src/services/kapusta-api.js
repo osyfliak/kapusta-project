@@ -95,7 +95,9 @@ export const getTransactionExpenseCategories = async () => {
 };
 
 export const getTransactionPeriodData = async date => {
-  const { data } = await privateApi.get('/transaction/period-data', date);
+  //?date=";
+  console.log('date: ',date);
+  const { data } = await privateApi.get('/transaction/period-data', {params: {date}});
   return data;
 };
 
@@ -109,3 +111,13 @@ export const getUser = async date => {
   const { data } = await privateApi.get('/user');
   return data;
 };
+
+export const token = {
+  set: token => {
+    privateApi.defaults.headers.Authorization = `Bearer ${token}`;
+  },
+  unSet: () => {
+    privateApi.defaults.headers.Authorization = "";
+  },
+};
+

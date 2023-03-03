@@ -24,6 +24,7 @@ import {
   getExpenseTransactionsByThunk,
 } from 'redux/transactions/operation';
 import { selectCategoryExpenses } from 'redux/transactions/transactions-selectors';
+import { setTypeAction } from 'redux/transactions/transactions-slice';
 import { selectUser } from 'redux/selector';
 
 const FormExpenses = () => {
@@ -40,6 +41,7 @@ const FormExpenses = () => {
       return;
     }
     dispatch(getExpenseCategoriesThunk());
+    dispatch(setTypeAction("expenses"));
   }, [dispatch, isUser]);
 
   const handleSubmit = evt => {
@@ -134,7 +136,7 @@ const FormExpenses = () => {
       <ButtonWrapper>
         <ModalButtonOrange type="submit">Input</ModalButtonOrange>
 
-        <ModalButtonWhite type="button" onClick={handleClear}>
+        <ModalButtonWhite type="button" closeModal={handleClear}>
           Clear
         </ModalButtonWhite>
       </ButtonWrapper>
