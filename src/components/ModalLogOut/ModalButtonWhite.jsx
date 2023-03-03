@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { WhiteButton } from './Buttons.styled';
 
-export const ModalButtonWhite = ({ children, closeModal }) => {
-  return <WhiteButton onClick={closeModal}>{children}</WhiteButton>;
+export const ModalButtonWhite = ({ children, closeModal, type }) => {
+  return <WhiteButton type={type} onClick={closeModal}>{children}</WhiteButton>;
 };
 
 ModalButtonWhite.propTypes = {
