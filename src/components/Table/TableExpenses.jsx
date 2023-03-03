@@ -41,6 +41,7 @@ export default function DenseTable() {
         </TableHead>
         <TableBody>
           {expensesList?.map(object => (
+         
             <TableRow
               key={object._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

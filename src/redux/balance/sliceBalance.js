@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logIn, refreshUser } from 'redux/auth/operation';
-import { addExpenseTransactionThunk, addIncomeTransactionThunk } from 'redux/transactions/operation';
+import { addExpenseTransactionThunk, addIncomeTransactionThunk, deleteTransactionThunk } from 'redux/transactions/operation';
 import { setUserBalance } from './operations';
 const initialState = {
   balance: 0,
@@ -45,6 +45,12 @@ const balanceSlice = createSlice({
 
       .addCase(addIncomeTransactionThunk.fulfilled, (state, {payload})=>{
         state.balance = payload.newBalance;
+      })
+
+      .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+      state.balance = payload.data.newBalance;
+
       })
   },
 });

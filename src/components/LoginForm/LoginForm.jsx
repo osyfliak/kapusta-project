@@ -43,7 +43,7 @@ export const LoginForm = ({title, type}) => {
         setEmail("");                               
     };
     const handleClickSignUp = ()=>{ 
-        console.log('type: ',type);
+    
         if (type === "Join") { 
             navigate("/login", { replace: false });
         }

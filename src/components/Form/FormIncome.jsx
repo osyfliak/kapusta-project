@@ -19,15 +19,12 @@ import {
   SelectInput,
 } from './Form.styled';
 
-
 import { getIncomeCategoriesThunk, addIncomeTransactionThunk, getIncomeTransactionsByThunk } from 'redux/transactions/operation';
-
 import { setTypeAction } from 'redux/transactions/transactions-slice';
-
-
 
 import { selectCategoryIncome } from 'redux/transactions/transactions-selectors';
 import { selectUser } from 'redux/selector';
+import { toast } from 'react-toastify';
 
 const FormIncome = () => {
   const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
@@ -38,6 +35,7 @@ const FormIncome = () => {
   const dispatch = useDispatch();
   const categoriesArray = useSelector(selectCategoryIncome);
   const isUser = useSelector(selectUser);
+
 
   useEffect(() => {
     if (!isUser) {
@@ -53,7 +51,17 @@ const FormIncome = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    if (description.trim().length === 0 || !amount) return; // toast.warning('Missing required fields');
+    if (description.trim().length === 0 || !amount || !category) 
+    return toast.info('Enter the data in the form', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });; // toast.warning('Missing required fields');
 
     dispatch(
       addIncomeTransactionThunk({

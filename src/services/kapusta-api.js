@@ -31,7 +31,7 @@ export const googleLoginAPI = async () => {
       accept: '*/*',
     },
   });
-  console.log('response', response);
+
   return response;
 };
 
@@ -80,9 +80,10 @@ export const getTransactionExpense = async () => {
 };
 
 export const deleteTransaction = async id => {
-  const { data } = await privateApi.get('/transaction/expense', id);
+  const { data } = await privateApi.delete(`/transaction/${id}`);
   return data;
 };
+
 
 export const getTransactionIncomeCategories = async () => {
   const { data } = await privateApi.get('/transaction/income-categories');
@@ -96,7 +97,7 @@ export const getTransactionExpenseCategories = async () => {
 
 export const getTransactionPeriodData = async date => {
   //?date=";
-  console.log('date: ',date);
+
   const { data } = await privateApi.get('/transaction/period-data', {params: {date}});
   return data;
 };

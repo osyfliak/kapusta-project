@@ -25,7 +25,7 @@ const BalanceHome = () => {
     let year = date.getFullYear(); 
     currentPeriod = `${year.toString()}-${monthNum.toString().padStart(2,'0')}`;
  };
-  console.log(currentPeriod);
+
   useEffect(() => {  
     dispatch(getTransactionPeriodDataThunk(currentPeriod)); 
   }, [dispatch,currentPeriod]); 

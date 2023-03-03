@@ -13,7 +13,7 @@ import {
 } from './ReportsBalance.styled';
 
 
-const ReportsBalance = () => {
+export const TotalReportsBalance = () => {
     const listExpenses = useSelector(selectTransactionsTotalExpenses);
     const listIncomes = useSelector(selectTransactionsTotalIncome)
 
@@ -35,4 +35,4 @@ const ReportsBalance = () => {
     </Wrapper>
   );
 };
-export default ReportsBalance;
+
