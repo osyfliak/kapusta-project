@@ -56,7 +56,7 @@ export function Chart() {
     if (!filteredData){
       return {keys, values};
     }   
-    let entries = null;
+    let entries = null;   
     if (selectedCategory){
       dataLikeObject = selectedType === "incomes" ? filteredData.incomesData[selectedCategory] : filteredData.expensesData[selectedCategory];
       entries = Object.entries(dataLikeObject).sort((a,b) => a[1] > b[1]);  
