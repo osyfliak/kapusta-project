@@ -54,6 +54,7 @@ const FormExpenses = () => {
         date,
       })
     );
+  
     handleClear();
   };
 
