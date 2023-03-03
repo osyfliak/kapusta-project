@@ -21,12 +21,12 @@ import {
 import {
   getExpenseCategoriesThunk,
   addExpenseTransactionThunk,
+  getExpenseTransactionsByThunk,
 } from 'redux/transactions/operation';
 import { selectCategoryExpenses } from 'redux/transactions/transactions-selectors';
 import { selectUser } from 'redux/selector';
 
 const FormExpenses = () => {
-
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -53,8 +53,9 @@ const FormExpenses = () => {
         category,
         date,
       })
-    );
-  
+    )
+      .unwrap()
+      .then(() => dispatch(getExpenseTransactionsByThunk()));
     handleClear();
   };
 
@@ -125,10 +126,7 @@ const FormExpenses = () => {
             min={0}
             value={amount}
           />
-          <CalculatorIcon
-            width= "20"
-            height= "20"
-          >
+          <CalculatorIcon width="20" height="20">
             <use href={`${icon}#icon-calculator`}></use>
           </CalculatorIcon>
         </CountWrapper>
