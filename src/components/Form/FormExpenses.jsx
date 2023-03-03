@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
 import moment from 'moment';
 import icon from '../../img/symbol-defs.svg';
 import { ModalButtonOrange } from 'components/ModalLogOut/ModalButtonOrange';
@@ -23,10 +23,11 @@ import {
   addExpenseTransactionThunk,
 } from 'redux/transactions/operation';
 import { selectCategoryExpenses } from 'redux/transactions/transactions-selectors';
+import { setTypeAction } from 'redux/transactions/transactions-slice';
 import { selectUser } from 'redux/selector';
 
 const FormExpenses = () => {
-  const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
+
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -40,6 +41,7 @@ const FormExpenses = () => {
       return;
     }
     dispatch(getExpenseCategoriesThunk());
+    dispatch(setTypeAction("expenses"));
   }, [dispatch, isUser]);
 
   const handleSubmit = evt => {
@@ -54,6 +56,7 @@ const FormExpenses = () => {
         date,
       })
     );
+  
     handleClear();
   };
 
@@ -125,8 +128,8 @@ const FormExpenses = () => {
             value={amount}
           />
           <CalculatorIcon
-            width={isScreenMoreTablet ? 20 : 40}
-            height={isScreenMoreTablet ? 20 : 40}
+            width= "20"
+            height= "20"
           >
             <use href={`${icon}#icon-calculator`}></use>
           </CalculatorIcon>
@@ -135,7 +138,7 @@ const FormExpenses = () => {
       <ButtonWrapper>
         <ModalButtonOrange type="submit">Input</ModalButtonOrange>
 
-        <ModalButtonWhite type="button" onClick={handleClear}>
+        <ModalButtonWhite type="button" closeModal={handleClear}>
           Clear
         </ModalButtonWhite>
       </ButtonWrapper>

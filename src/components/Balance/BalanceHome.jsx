@@ -1,5 +1,10 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Icon from '../../img/symbol-defs.svg';
 import Balance from './Balance';
+import { getTransactionPeriodDataThunk } from 'redux/transactions/operation';
+import { selectCurrentPeriod } from 'redux/balance/selectBalance';
+import { useSelector } from 'react-redux';
 import {
   Wrapper,
   ReportLink,
@@ -8,9 +13,23 @@ import {
   TransactionLink,
 } from './BalanceHome.styled';
 
-
-
 const BalanceHome = () => {
+  const dispatch = useDispatch();
+  const selectPeriod = useSelector(selectCurrentPeriod);
+  let currentPeriod = null;
+  if (selectPeriod.year){
+    currentPeriod = `${selectPeriod.year}-${selectPeriod.monthNum.padStart(2,'0')}`;
+  } else {
+    const date = new Date();  
+    let monthNum = date.getMonth() + 1;
+    let year = date.getFullYear(); 
+    currentPeriod = `${year.toString()}-${monthNum.toString().padStart(2,'0')}`;
+ };
+  console.log(currentPeriod);
+  useEffect(() => {  
+    dispatch(getTransactionPeriodDataThunk(currentPeriod)); 
+  }, [dispatch,currentPeriod]); 
+   
   return (
     <>
       <Wrapper>

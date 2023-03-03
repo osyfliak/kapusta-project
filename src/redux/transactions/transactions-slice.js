@@ -2,25 +2,75 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   addExpenseTransactionThunk,
   addIncomeTransactionThunk,
-  delateTransactionThunk,
+  deleteTransactionThunk,
   getExpenseCategoriesThunk,
   getExpenseTransactionsByThunk,
   getIncomeCategoriesThunk,
   getIncomeTransactionsByThunk,
+  getTransactionPeriodDataThunk,
 } from './operation';
+
+const mockData = {
+  "incomes": {
+    "total": 12000,
+    "incomesData": {
+      "З/П": {
+        "total": 12000,
+        "Аванс": 5000,
+        "Основная": 7000
+      }
+    }
+  },
+  "expenses": {
+    "total": 5200,
+    "expensesData": {
+      "Транспорт": {
+        "total": 4000,
+        "СТО": 3500,
+        "Мойка": 500
+      },
+      "Всё для дома": {
+        "total": 1200,
+        "Вазон": 150,
+        "Шкаф-купе": 1050
+      }
+    }
+  }
+};
 
 const initialState = {
   transactions: [],
   categoryIncome: [],
   categoryExpenses: [],
+  expenses: [],
+  incomes: [],
   isLoading: false,
   error: null,
+  periodItems: mockData,
+  selectCategory: null,
+  type: 'expenses',
+};
+
+
+
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+const handleRejected = (state, { payload }) => {
+  state.error = payload;
 };
 
 export const transactionSlice = createSlice({
   name: 'transaction',
   initialState,
-  reducers: {},
+  reducers: {
+    setCategoryAction: (state, { payload }) => {
+      state.selectCategory = payload;
+    },
+    setTypeAction: (state, { payload }) => {
+      state.type = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(addExpenseTransactionThunk.pending, state => {
@@ -28,7 +78,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(addExpenseTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.transactions = [...state.transactions, payload];
+        state.expenses = [payload.transaction, ...state.expenses];
       })
       .addCase(addExpenseTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -41,24 +91,24 @@ export const transactionSlice = createSlice({
         getExpenseTransactionsByThunk.fulfilled,
         (state, { payload }) => {
           state.isLoading = false;
-          state.transactions = payload;
+          state.expenses = payload.expenses;
         }
       )
       .addCase(getExpenseTransactionsByThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(delateTransactionThunk.pending, state => {
+      .addCase(deleteTransactionThunk.pending, state => {
         state.isLoading = true;
       })
-      .addCase(delateTransactionThunk.fulfilled, (state, { payload }) => {
+      .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         const indexElem = state.transactions.findIndex(
           item => item.id === payload.id
         );
         state.transactions.splice(indexElem, 1);
       })
-      .addCase(delateTransactionThunk.rejected, (state, { payload }) => {
+      .addCase(deleteTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
@@ -78,7 +128,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(addIncomeTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.transactions = [...state.transactions, payload];
+        state.incomes = [payload.transaction, ...state.incomes];
       })
       .addCase(addIncomeTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -89,7 +139,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(getIncomeTransactionsByThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.category = payload;
+        state.incomes = payload.incomes;
       })
       .addCase(getIncomeTransactionsByThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -105,7 +155,14 @@ export const transactionSlice = createSlice({
       .addCase(getIncomeCategoriesThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
-      });
+      })
+      .addCase(getTransactionPeriodDataThunk.pending, handlePending) 
+      .addCase(getTransactionPeriodDataThunk.rejected, handleRejected)
+      .addCase(getTransactionPeriodDataThunk.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.periodItems = payload;
+});
   },
 });
 export const transactionReducer = transactionSlice.reducer;
+export const {setCategoryAction, setTypeAction} = transactionSlice.actions;
