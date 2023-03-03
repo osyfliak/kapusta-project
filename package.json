@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://osyfliak.github.io/kapusta-project/",
   "dependencies": {
+    "@emotion/css": "^11.10.6",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.11",

@@ -23,6 +23,7 @@ import {
   addExpenseTransactionThunk,
 } from 'redux/transactions/operation';
 import { selectCategoryExpenses } from 'redux/transactions/transactions-selectors';
+import { setTypeAction } from 'redux/transactions/transactions-slice';
 import { selectUser } from 'redux/selector';
 
 const FormExpenses = () => {
@@ -40,6 +41,7 @@ const FormExpenses = () => {
       return;
     }
     dispatch(getExpenseCategoriesThunk());
+    dispatch(setTypeAction("expenses"));
   }, [dispatch, isUser]);
 
   const handleSubmit = evt => {
