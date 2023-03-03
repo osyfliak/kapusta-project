@@ -107,8 +107,8 @@ export const transactionSlice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.expenses = state.expenses.filter(el => el._id !== payload);
-        state.incomes = state.incomes.filter(el => el._id !== payload);
+        state.expenses = state.expenses.filter(el => el._id !== payload.id);
+        state.incomes = state.incomes.filter(el => el._id !== payload.id);
       })
       .addCase(deleteTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;

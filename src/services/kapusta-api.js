@@ -80,9 +80,10 @@ export const getTransactionExpense = async () => {
 };
 
 export const deleteTransaction = async id => {
-  const { data } = await privateApi.get('/transaction/expense', id);
+  const { data } = await privateApi.delete(`/transaction/${id}`);
   return data;
 };
+
 
 export const getTransactionIncomeCategories = async () => {
   const { data } = await privateApi.get('/transaction/income-categories');
