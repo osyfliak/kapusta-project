@@ -1,5 +1,6 @@
 // import { useSelector } from 'react-redux';
-// import { selectAllSummaryReports } from 'redux/reports/selectors';
+// import { selectExpenses } from 'redux/transactions/transactions-selectors';
+// import { selectIncomes } from 'redux/transactions/transactions-selectors';
 
 // import {
 //   Wrapper,
@@ -8,42 +9,36 @@
 //   SumPositive,
 //   ExpensesContainer,
 //   IncomeContainer,
-//   Line, 
+//   Line,
 // } from './ReportsBalance.styled';
 
 // const ReportsBalance = () => {
-//   // const summaryReports = useSelector(selectAllSummaryReports);
-//   console.log(summaryReports);
+//   const listExpenses = useSelector(selectExpenses);
+//     const listIncomes = useSelector(selectIncomes);
+//     console.log(listExpenses);
+
 //   return (
 //     <Wrapper>
-//       {summaryReports?.map((item, index) => {
-//         if (item.operation === 'expenses') {
-//           return (
-//             <ExpensesContainer key={index}>
-//               <Text>Expenses:</Text>
-//               <Sum>
-//                 - {item.sum === 0 ? '00' : item.sum}.00 UAH.
-//               </Sum>
-//             </ExpensesContainer>
-//           );
-//         }
-//         return null;
+//       {listExpenses?.map((item, index) => {
+//         return (
+//           <ExpensesContainer key={index}>
+//             <Text>Expenses:</Text>
+//             <Sum>- {item === 0 ? '00' : item}.00 UAH.</Sum>
+//           </ExpensesContainer>
+//         );
 //       })}
 
-//       <Line/>
+//       <Line />
 
-//       {summaryReports?.map((item, index) => {
-//         if (item.operation === 'income') {
-//           return (
-//             <IncomeContainer key={index}>
-//               <Text>Income:</Text>
-//               <SumPositive>
-//                 + {item.sum === 0 ? '00' : item.sum}.00 UAH.
-//               </SumPositive>
-//             </IncomeContainer>
-//           );
-//         }
-//         return null;
+//       {listIncomes?.map((item, index) => {
+//         return (
+//           <IncomeContainer key={index}>
+//             <Text>Income:</Text>
+//             <SumPositive>
+//               + {item.sum === 0 ? '00' : item.sum}.00 UAH.
+//             </SumPositive>
+//           </IncomeContainer>
+//         );
 //       })}
 //     </Wrapper>
 //   );
