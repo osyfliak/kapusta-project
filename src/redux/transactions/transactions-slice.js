@@ -10,16 +10,46 @@ import {
   getTransactionPeriodDataThunk,
 } from './operation';
 
+const mockData = {
+  "incomes": {
+    "total": 12000,
+    "incomesData": {
+      "З/П": {
+        "total": 12000,
+        "Аванс": 5000,
+        "Основная": 7000
+      }
+    }
+  },
+  "expenses": {
+    "total": 5200,
+    "expensesData": {
+      "Транспорт": {
+        "total": 4000,
+        "СТО": 3500,
+        "Мойка": 500
+      },
+      "Всё для дома": {
+        "total": 1200,
+        "Вазон": 150,
+        "Шкаф-купе": 1050
+      }
+    }
+  }
+};
+
 const initialState = {
   transactions: [],
   categoryIncome: [],
   categoryExpenses: [],
   isLoading: false,
   error: null,
-  periodItems: [],
+  periodItems: mockData,
   selectCategory: null,
-  type: null,
+  type: 'expenses',
 };
+
+
 
 const handlePending = (state) => {
   state.isLoading = true;
