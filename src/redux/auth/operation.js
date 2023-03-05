@@ -10,7 +10,7 @@ import {
   clearAuthHeader,
   fullUserInfoAPI,
   refresh,
-  googleLoginAPI,
+  
 } from 'services/kapusta-api';
 import { auth } from 'services/firebase.config';
 

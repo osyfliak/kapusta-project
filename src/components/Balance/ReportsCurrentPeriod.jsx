@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import changeMonth from 'helpers/changeMonth';
 import { setCurrentPeriod } from '../../redux/balance/sliceBalance';
@@ -12,22 +12,27 @@ import {
 } from './ReportsCurrentPeriod.styled';
 import { getTransactionPeriodDataThunk } from 'redux/transactions/operation';
 import { setCategoryAction } from 'redux/transactions/transactions-slice';
+import { selectUser } from 'redux/selector';
 
 const ReportsCurrentPeriod = () => {
   const [newDate, setNewDate] = useState(() => new Date());
   const dispatch = useDispatch();
-
+  const isUser = useSelector(selectUser);
   useEffect(() => {    
+ 
     dispatch(
       setCurrentPeriod({
         month: moment(newDate).format('MMMM'),
         monthNum: moment(newDate).format('MM'),
         year: moment(newDate).format('yyyy'),
       })
-    );    
-    dispatch(getTransactionPeriodDataThunk(`${moment(newDate).format('yyyy')}-${moment(newDate).format('MM').padStart(2,'0')}`)); 
+    );
+    if (isUser) {
+      dispatch(getTransactionPeriodDataThunk(`${moment(newDate).format('yyyy')}-${moment(newDate).format('MM').padStart(2,'0')}`)); 
+    }
+   
     dispatch(setCategoryAction(null));
-  }, [dispatch, newDate]);
+  }, [dispatch, isUser, newDate]);
 
       
   const monthChangeLeft = () => {

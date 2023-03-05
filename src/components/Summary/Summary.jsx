@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectToken, selectUser } from 'redux/selector';
+import {  selectUser } from 'redux/selector';
 
 import {
   getExpenseTransactionsByThunk,
