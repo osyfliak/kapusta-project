@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectToken } from 'redux/selector';
+import { selectToken, selectUser } from 'redux/selector';
 
 import {
   getExpenseTransactionsByThunk,
@@ -48,16 +48,17 @@ const formatNumber = num => {
 export const Summary = () => {
   const allIncomes = useSelector(selectIncomeSummary);
   const allExpenses = useSelector(selectExpenseSummary);
-  const isToken = useSelector(selectToken);
+
+  const isUser = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isToken) {
+    if (!isUser) {
       return;
     }
     dispatch(getExpenseTransactionsByThunk());
     dispatch(getIncomeTransactionsByThunk());
-  }, [dispatch, isToken]);
+  }, [dispatch, isUser]);
 
   const monthsEntries = mergeObjectsIntoEntries(allIncomes, allExpenses);
 
