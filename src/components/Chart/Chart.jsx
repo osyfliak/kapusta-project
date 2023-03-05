@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { selectTransactionsPerPeriod, selectCategory, selectType } from 'redux/transactions/transactions-selectors';
 import { getOptions } from './ChartOptions';
 import useWindowDimensions from './ChartHookWindowsDimenssions';
-import translate from 'helpers/translate';
+//import translate from 'helpers/translate';
 
 ChartJS.register(
   CategoryScale,
@@ -70,7 +70,7 @@ export function Chart() {
       entries.sort((a,b) => a[1].total > b[1].total);  
       values = entries.map(value => value[1].total);   
     }
-    keys = entries.map(value => translate[value[0]]); 
+    keys = entries.map(value => value[0]); 
   
     return {keys, values};
   };
