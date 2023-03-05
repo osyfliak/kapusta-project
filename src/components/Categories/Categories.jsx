@@ -82,7 +82,7 @@ export const Categories = () => {
         (<ListOfBalanceChanges> 
           {valuesAndKeys.map(value => 
               {
-                return <ItemOfBalanceChanges onClick={onItemClick} id={value[0]}>
+                return <ItemOfBalanceChanges key={translate[value[0]]} onClick={onItemClick} id={value[0]}>
                   <p>{formating(value[1].total)}</p>
                   <BoxForSvg>
                     {' '}
