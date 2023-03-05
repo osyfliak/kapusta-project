@@ -63,15 +63,16 @@ export function Chart() {
       dataLikeObject = selectedType === "incomes" ? filteredData.incomesData[selectedCategory] : filteredData.expensesData[selectedCategory];
       entries = Object.entries(dataLikeObject);  
       entries.sort((a,b) => a[1] > b[1]).splice(0,1);      
-      values = entries.map(value => value[1]);      
+      values = entries.map(value => value[1]); 
+      keys = entries.map(value => value[0]);      
     }else{  
       dataLikeObject = selectedType === "incomes" ? filteredData.incomesData : filteredData.expensesData;
       entries = Object.entries(dataLikeObject);
       entries.sort((a,b) => a[1].total > b[1].total);  
-      values = entries.map(value => value[1].total);   
+      values = entries.map(value => value[1].total); 
+      keys = entries.map(value => translate[value[0]]);   
     }
-    keys = entries.map(value => translate[value[0]]); 
-  
+     
     return {keys, values};
   };
  const valuesAndKeys = filteredDataByCategory(filteredDataByType);
