@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { selectTransactionsPerPeriod, selectCategory, selectType } from 'redux/transactions/transactions-selectors';
 import { getOptions } from './ChartOptions';
 import useWindowDimensions from './ChartHookWindowsDimenssions';
+import translate from 'helpers/translate';
 
 ChartJS.register(
   CategoryScale,
@@ -49,6 +50,7 @@ export function Chart() {
   if (selectedData){
     filteredDataByType = selectedType === "incomes" ? selectedData.incomes : selectedData.expenses;
   }
+  
   function filteredDataByCategory(filteredData){    
     let dataLikeObject = null;
     let values = [];
@@ -59,16 +61,16 @@ export function Chart() {
     let entries = null;   
     if (selectedCategory){
       dataLikeObject = selectedType === "incomes" ? filteredData.incomesData[selectedCategory] : filteredData.expensesData[selectedCategory];
-      entries = Object.entries(dataLikeObject).sort((a,b) => a[1] > b[1]);  
-      entries.splice(0,1);      
+      entries = Object.entries(dataLikeObject);  
+      entries.sort((a,b) => a[1] > b[1]).splice(0,1);      
       values = entries.map(value => value[1]);      
     }else{  
       dataLikeObject = selectedType === "incomes" ? filteredData.incomesData : filteredData.expensesData;
-    
-      entries = Object.entries(dataLikeObject).sort((a,b) => a[1].total > b[1].total);  
+      entries = Object.entries(dataLikeObject);
+      entries.sort((a,b) => a[1].total > b[1].total);  
       values = entries.map(value => value[1].total);   
     }
-    keys = entries.map(value => value[0]); 
+    keys = entries.map(value => translate[value[0]]); 
   
     return {keys, values};
   };
