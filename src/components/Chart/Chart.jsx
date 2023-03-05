@@ -77,7 +77,6 @@ export function Chart() {
   };
  const valuesAndKeys = filteredDataByCategory(filteredDataByType);
  const labels = valuesAndKeys.keys;
- console.log(labels);
   
   const data = {
     labels,
