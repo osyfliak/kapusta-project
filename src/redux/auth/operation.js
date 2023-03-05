@@ -1,3 +1,4 @@
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
@@ -9,7 +10,26 @@ import {
   clearAuthHeader,
   fullUserInfoAPI,
   refresh,
+  googleLoginAPI,
 } from 'services/kapusta-api';
+import { auth } from 'services/firebase.config';
+
+const provider = new GoogleAuthProvider();
+
+export const googleAuth = createAsyncThunk(
+  'auth/google',
+  async () => {
+    try {
+      const data = await signInWithPopup(auth, provider);
+    
+      console.log(data)
+      return data;
+    } catch {
+      console.log('error');
+      
+    }
+  }
+);
 
 // Login Thunk
 export const logIn = createAsyncThunk(
@@ -63,7 +83,7 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.refreshToken;
 
-const sid = state.auth.sid;
+    const sid = state.auth.sid;
 
     setAuthHeader(persistedToken);
     if (!persistedToken) {
