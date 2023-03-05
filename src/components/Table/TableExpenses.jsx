@@ -28,7 +28,9 @@ export default function DenseTable() {
     dispatch(getExpenseTransactionsByThunk());
   }, [dispatch, isUser]);
   const handleClick = id => {
-    dispatch(deleteTransactionThunk(id));
+    dispatch(deleteTransactionThunk(id))
+      .unwrap()
+      .then(() => dispatch(getExpenseTransactionsByThunk()));
   };
   return (
     <TableContainer component={Paper}>
