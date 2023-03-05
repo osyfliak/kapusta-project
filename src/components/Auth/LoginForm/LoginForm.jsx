@@ -14,7 +14,7 @@ import {
   LogInBtn,
   StyledNavlink,
 } from './LoginForm.styled';
-import { googleAuth, logIn } from 'redux/auth/operation';
+import { logIn } from 'redux/auth/operation';
 
 
 export const LoginForm = () => {
@@ -49,9 +49,9 @@ export const LoginForm = () => {
         return;
     }
   };
- const onClick =()=>{
-  dispatch(googleAuth());
- }
+//  const onClick =()=>{
+//   dispatch(googleAuth());
+//  }
   const emailHandler = e => {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -84,7 +84,7 @@ export const LoginForm = () => {
       <StyledpromtText>
         You can log in with your Google Account:
       </StyledpromtText>
-   <button onClick={onClick}>google</button>
+   {/* <button onClick={onClick}>google</button> */}
       <StyledLinkbtnGoogle href="https://kapusta-backend.goit.global/auth/google">
         <GoogleSvg />
       </StyledLinkbtnGoogle>
