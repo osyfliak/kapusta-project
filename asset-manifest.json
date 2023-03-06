@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/kapusta-project/static/css/main.1c39f766.css",
-    "main.js": "/kapusta-project/static/js/main.1116ee65.js",
+    "main.js": "/kapusta-project/static/js/main.7f98cc46.js",
     "static/media/bgBottomDesktop.svg": "/kapusta-project/static/media/bgBottomDesktop.7d719bc3ecca6e327582d22b41f24e0a.svg",
     "static/media/icons_expenses_sprite.svg": "/kapusta-project/static/media/icons_expenses_sprite.b7ef1487afb0df22762f1fd65b4160a1.svg",
     "static/media/groupDesktop.png": "/kapusta-project/static/media/groupDesktop.a8b88f9bf35a9beb0d06.png",
@@ -20,10 +20,10 @@
     "static/media/bgMobile.svg": "/kapusta-project/static/media/bgMobile.33ba972d1eef188a70658dca2982c623.svg",
     "static/media/tabEllipse.svg": "/kapusta-project/static/media/tabEllipse.f1b59b20b52c5f9305e31367cabbf38e.svg",
     "main.1c39f766.css.map": "/kapusta-project/static/css/main.1c39f766.css.map",
-    "main.1116ee65.js.map": "/kapusta-project/static/js/main.1116ee65.js.map"
+    "main.7f98cc46.js.map": "/kapusta-project/static/js/main.7f98cc46.js.map"
   },
   "entrypoints": [
     "static/css/main.1c39f766.css",
-    "static/js/main.1116ee65.js"
+    "static/js/main.7f98cc46.js"
   ]
 }
