@@ -16,6 +16,13 @@ import { selectUser } from 'redux/selector';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+function formatPositiveNumber(num) {
+  return `${num
+    .toFixed(2)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} UAH.`;
+}
+
 export default function DenseTable() {
   const isUser = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -35,12 +42,21 @@ export default function DenseTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
+        <TableHead
+          sx={{
+            '& th': {
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              backgroundColor: '#F5F6FB',
+            },
+          }}
+        >
           <TableRow>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Category</TableCell>
+            <TableCell align="left">Date</TableCell>
+            <TableCell align="left">Description</TableCell>
+            <TableCell align="left">Category</TableCell>
             <TableCell align="right">Sum</TableCell>
+            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,13 +65,18 @@ export default function DenseTable() {
               key={object._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" align="left">
                 {object.date.split('-').join('.')}
               </TableCell>
-              <TableCell align="right">{object.description}</TableCell>
-              <TableCell align="right">{object.category}</TableCell>
-              <TableCell align="right">{object.amount}</TableCell>
-              <TableCell align="right">
+              <TableCell align="left">{object.description}</TableCell>
+              <TableCell align="left">{object.category}</TableCell>
+              <TableCell
+                align="right"
+                style={{ color: '#407946', fontWeight: 700 }}
+              >
+                {formatPositiveNumber(object.amount)}
+              </TableCell>
+              <TableCell align="center">
                 <IconButton
                   aria-label="delete"
                   onClick={() => handleClick(object._id)}
