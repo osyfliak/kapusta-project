@@ -23,6 +23,16 @@ function formatNegativeNumber(num) {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} UAH.`;
 }
 
+function formatDate(dateString) {
+  var date = new Date(dateString);
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  return `${day.toString().padStart(2, '0')}.${month
+    .toString()
+    .padStart(2, '0')}.${year}`;
+}
+
 export default function DenseTable() {
   const isUser = useSelector(selectUser);
   const expensesList = useSelector(selectExpenses);
@@ -66,7 +76,7 @@ export default function DenseTable() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row" align="left">
-                {object.date.split('-').join('.')}
+                {formatDate(object.date)}
               </TableCell>
               <TableCell align="left">{object.description}</TableCell>
               <TableCell align="left">{object.category}</TableCell>
