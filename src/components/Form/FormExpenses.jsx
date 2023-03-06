@@ -42,22 +42,22 @@ const FormExpenses = () => {
       return;
     }
     dispatch(getExpenseCategoriesThunk());
-    dispatch(setTypeAction("expenses"));
+    dispatch(setTypeAction('expenses'));
   }, [dispatch, isUser]);
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    if (description.trim().length === 0 || !amount || !category) 
-    return toast.info('Enter the data in the form', {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });; // toast.warning('Missing required fields');
+    if (description.trim().length === 0 || !amount || !category)
+      return toast.info('Enter the data in the form', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      }); // toast.warning('Missing required fields');
 
     dispatch(
       addExpenseTransactionThunk({
@@ -139,8 +139,11 @@ const FormExpenses = () => {
             min={0}
             value={amount}
           />
-          <CalculatorIcon width="20" height="20">
-            <use href={`${icon}#icon-calculator`}></use>
+
+          <CalculatorIcon>
+            <svg width="20" height="20">
+              <use href={`${icon}#icon-calculator`}></use>
+            </svg>
           </CalculatorIcon>
         </CountWrapper>
       </InputWrapper>

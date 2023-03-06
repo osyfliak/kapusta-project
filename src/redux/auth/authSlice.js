@@ -1,7 +1,6 @@
 import { ActionTypes } from '@mui/base';
 import { createSlice } from '@reduxjs/toolkit';
-
-import { logIn, logOut, refreshUser, register, googleAuthThunk } from './operation';
+import { googleAuth, logIn, logOut, refreshUser, register } from './operation';
 
 const initialState = {
   user: { email: null, id: null },
@@ -13,14 +12,14 @@ const initialState = {
   isFetchingCurrentUser: false,
 };
 
-const handleAuth =(state, action) => {
+const handleAuth = (state, action) => {
   const { email, id, balance } = action.payload.userData;
   state.user = { email, id, newBalance: balance };
   state.token = action.payload.accessToken;
   state.refreshToken = action.payload.refreshToken;
   state.sid = action.payload.sid;
   state.isLoggedIn = true;
-}
+};
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -34,7 +33,14 @@ export const authSlice = createSlice({
     builder
       // login
       .addCase(logIn.fulfilled, handleAuth)
-
+      .addCase(googleAuth.fulfilled, (state, action) => {
+        state.user = {email: action.payload.user.email, id: action.payload.user.uid  };
+        state.isLoggedIn = true;
+        state.isFetchingCurrentUser = false;
+        state.token = action.payload.user.accessToken;
+        state.refreshToken = action.payload._tokenResponse.refreshToken;
+        state.sid = action.payload.user.uid ;
+      })
       .addCase(register.fulfilled, handleAuth)
       // logout
       .addCase(logOut.fulfilled, state => {
@@ -78,4 +84,3 @@ export const authSlice = createSlice({
 export const authReduser = authSlice.reducer;
 
 export const { addAccessToken } = authSlice.actions;
-

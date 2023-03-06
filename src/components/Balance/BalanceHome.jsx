@@ -12,8 +12,11 @@ import {
   TextLitk,
   TransactionLink,
 } from './BalanceHome.styled';
+import {  selectUser } from 'redux/selector';
 
 const BalanceHome = () => {
+  const isUser = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const selectPeriod = useSelector(selectCurrentPeriod);
   let currentPeriod = null;
@@ -27,9 +30,13 @@ const BalanceHome = () => {
  };
 
   useEffect(() => {  
+
+    if (!isUser) {
+      return;
+    }
     dispatch(getTransactionPeriodDataThunk(currentPeriod)); 
-  }, [dispatch,currentPeriod]); 
-   
+  }, [dispatch, currentPeriod, isUser, ]); 
+
   return (
     <>
       <Wrapper>

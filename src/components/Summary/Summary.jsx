@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {  selectUser } from 'redux/selector';
 
 import {
   getExpenseTransactionsByThunk,
@@ -47,49 +48,49 @@ const formatNumber = num => {
 export const Summary = () => {
   const allIncomes = useSelector(selectIncomeSummary);
   const allExpenses = useSelector(selectExpenseSummary);
+  const isUser = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!isUser) {
+      return;
+    }
     dispatch(getExpenseTransactionsByThunk());
     dispatch(getIncomeTransactionsByThunk());
-  }, [dispatch]);
+  }, [dispatch, isUser]);
 
-  const monthlySummaryEntries = mergeObjectsIntoEntries(
-    allIncomes,
-    allExpenses
-  );
+  const monthsEntries = mergeObjectsIntoEntries(allIncomes, allExpenses);
 
-
-
-  // const translatedObj = {
-  //   январь: ['JANUARY', monthlySummaryEntries[0][1]],
-  //   февраль: ['FEBRUARY', monthlySummaryEntries[1][1]],
-  //   март: ['MARCH', monthlySummaryEntries[2][1]],
-  //   апрель: ['APRIL', monthlySummaryEntries[3][1]],
-  //   май: ['MAY', monthlySummaryEntries[4][1]],
-  //   июнь: ['JUNE', monthlySummaryEntries[5][1]],
-  //   июль: ['JULY', monthlySummaryEntries[6][1]],
-  //   август: ['AUGUST', monthlySummaryEntries[7][1]],
-  //   сентябрь: ['SEPTEMBER', monthlySummaryEntries[8][1]],
-  //   октябрь: ['OCTOBER', monthlySummaryEntries[9][1]],
-  //   ноябрь: ['NOVEMBER', monthlySummaryEntries[10][1]],
-  //   декабрь: ['DECEMBER', monthlySummaryEntries[11][1]],
-  // };
-
-  // console.log(translatedObj['январь']);
+  const translate = array => ({
+    Январь: ['JANUARY', array[0][1]],
+    Февраль: ['FEBRUARY', array[1][1]],
+    Март: ['MARCH', array[2][1]],
+    Апрель: ['APRIL', array[3][1]],
+    Май: ['MAY', array[4][1]],
+    Июнь: ['JUNE', array[5][1]],
+    Июль: ['JULY', array[6][1]],
+    Август: ['AUGUST', array[7][1]],
+    Сентябрь: ['SEPTEMBER', array[8][1]],
+    Октябрь: ['OCTOBER', array[9][1]],
+    Ноябрь: ['NOVEMBER', array[10][1]],
+    Декабрь: ['DECEMBER', array[11][1]],
+  });
 
   return (
     <StyledSummary>
       <Title>Summary</Title>
       <List>
-        {monthlySummaryEntries?.map(
-          ([month, value]) =>
-            typeof value === 'number' && (
-              <Month key={month}>
-                {month} <span>{formatNumber(value)}</span>
-              </Month>
+        {monthsEntries.length
+          ? monthsEntries.map(
+              ([month, value]) =>
+                typeof value === 'number' && (
+                  <Month key={month}>
+                    {translate(monthsEntries)[month][0]}
+                    <span>{formatNumber(value)}</span>
+                  </Month>
+                )
             )
-        )}
+          : null}
       </List>
     </StyledSummary>
   );

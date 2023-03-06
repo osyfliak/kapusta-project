@@ -11,23 +11,24 @@ const DEVICE = {
   laptop: `screen and (min-width: ${SIZE.laptop})`,
 };
 
-
 export const FormWrapper = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
+
   @media ${DEVICE.tablet} {
     margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 24px 40px;
+    background-color: #fff;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 0px 0px;
   }
   @media ${DEVICE.laptop} {
-    padding-top: 30px;
+    padding-top: 32px;
     flex-direction: row;
     justify-self: flex-start;
     flex-wrap: nowrap;
-    padding: 0;
   }
 `;
 
@@ -52,7 +53,9 @@ export const InputWrapper = styled.div`
 export const DateWrapper = styled.div`
   position: relative;
   margin-bottom: 32px;
+  display: none;
   @media ${DEVICE.tablet} {
+    display: block;
     margin-bottom: 0px;
   }
 `;
@@ -123,18 +126,18 @@ export const DescriptionInput = styled.input`
   display: block;
   font-family: inherit;
   width: 100%;
+  max-width: 280px;
   height: 44px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   font-size: 12px;
-  line-height: 1.14;
+  line-height: 1.17;
   text-align: start;
   background-color: transparent;
-  padding-left: 30px;
+  padding-left: 20px;
   outline-color: #ff751d;
   border: 2px solid #ffffff;
   border-bottom: none;
-  color: #52555f;
   &::placeholder {
     font-weight: 400;
     color: #c7ccdc;
@@ -142,12 +145,12 @@ export const DescriptionInput = styled.input`
   @media ${DEVICE.tablet} {
     border-top-right-radius: 0px;
     border: 2px solid #f6f7fc;
-    display: flex;
-    padding-left: 12px;
+    max-width: 186px;
+    padding-left: 20px;
   }
   @media ${DEVICE.laptop} {
     padding-left: 12px;
-    /* width: 238px; */
+    max-width: 290px;
   }
 `;
 
@@ -155,81 +158,87 @@ export const SelectInput = styled.select`
   display: block;
   font-family: inherit;
   width: 100%;
+  max-width: 280px;
   height: 44px;
+  font-size: 12px;
+  line-height: 1.17;
+  text-align: start;
   border: 2px solid #ffffff;
   border-bottom-right-radius: 16px;
   outline-color: #ff751d;
   color: #c7ccdc;
+  background-color: transparent;
+  padding: 0 20px;
+  &::placeholder {
+    font-weight: 400;
+    color: #c7ccdc;
+  }
   @media ${DEVICE.tablet} {
     border: 2px solid #f6f7fc;
     border-left: none;
     border-right: none;
     border-bottom-right-radius: 0px;
+    max-width: 186px;
+    padding-left: 20px;
   }
 `;
 
 export const CountWrapper = styled.div`
-  position: relative;
   width: 183px;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 2px solid #fff;
+  border-radius: 22px 22px;
+  margin-top: 32px;
   @media ${DEVICE.tablet} {
     display: flex;
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
-    width: 110px;
+    border-radius: 0 16px 16px 0;
+    width: fit-content;
     border: 2px solid #f6f7fc;
+    margin-top: 0;
   }
   @media ${DEVICE.laptop} {
     width: 121px;
-  }
-`;
-
-export const CalculatorIcon = styled.svg`
-  position: absolute;
-  top: 34px;
-  right: 12px;
-  padding: 8px;
-  border-left: 2px solid #f6f7fc;
-  @media ${DEVICE.tablet} {
-    border: none;
-    right: 16px;
-    top: 9px;
-    padding: 0;
-  }
-  @media ${DEVICE.laptop} {
-    right: 17px;
-    top: 10px;
   }
 `;
 
 export const CountInput = styled.input`
   font-family: inherit;
   outline-color: #ff751d;
-  width: 183px;
-  height: 44px;
-  padding-right: 55px;
-  padding-left: 55px;
-  border-radius: 22px;
   font-weight: 900;
   font-size: 12px;
   line-height: 1.14;
-  text-align: center;
-  margin-top: 32px;
+  max-width: 120px;
   color: #52555f;
-  border: 2px solid #f6f7fc;
+  border: transparent;
   background-color: transparent;
+  padding-right: 18px;
+  text-align: end;
   @media ${DEVICE.tablet} {
     height: 40px;
     border: 2px solid #f6f7fc;
     width: 110px;
     margin-top: 0;
-    padding-right: 45px;
-    padding-left: 10px;
+    padding-right: 12px;
     border: transparent;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
   }
   @media ${DEVICE.laptop} {
-    width: 121px;
+    width: 80px;
+  }
+`;
+
+export const CalculatorIcon = styled.div`
+  border-radius: 0 22px 22px 0;
+  border-left: 2px solid #fff;
+  padding: 10px 21px 13px;
+  @media ${DEVICE.tablet} {
+    padding: 8px 14px 14px 0;
+  }
+  @media ${DEVICE.laptop} {
   }
 `;
 
