@@ -12,9 +12,9 @@ import { Block } from 'pages/Income/Income.styled';
 
 export default function ExpensesPage() {
   const isScreenTablet = useMediaQuery(
-    '(min-width: 768px) and (max-width: 1280px)'
+    '(min-width: 768px) and (max-width: 1279px)'
   );
-  const isScreenDesktop = useMediaQuery('(min-width: 1281px)');
+  const isScreenDesktop = useMediaQuery('(min-width: 1280px)');
   // const dispatch = useDispatch();
   // // const allExpenses = useSelector(selectExpenseTransactions);
   // const user = useSelector(selectIsLoggedIn);

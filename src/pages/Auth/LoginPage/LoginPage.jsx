@@ -32,7 +32,6 @@ export default function LoginPage() {
   // Hook
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
   return (
-    <>
       <StyledLoginPage>
         <Background
           imgMobUrl={imageMobBg}
@@ -73,6 +72,5 @@ export default function LoginPage() {
           <LoginForm />
         </Background>
       </StyledLoginPage>
-    </>
   );
 }

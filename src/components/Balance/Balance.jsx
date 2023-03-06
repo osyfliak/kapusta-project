@@ -13,11 +13,8 @@ import {
   WrapperForm,
 } from './Balance.styled';
 
-
 const Balance = () => {
   const currentBalance = useSelector(selectBalance);
-
-
 
   const [value, setValue] = useState(currentBalance ?? 0);
   const [promptClose, setPromptClose] = useState(true);
@@ -35,7 +32,7 @@ const Balance = () => {
     e.preventDefault();
     const data = e.target.elements.balance.value;
     const balance = Number(data);
-  
+
     const sevedBalance = {
       newBalance: balance,
     };
@@ -65,7 +62,7 @@ const Balance = () => {
             />
             <Label>UAH</Label>
           </InputContainer>
-          {promptClose && !currentBalance && (
+          {promptClose && currentBalance <= 0 && (
             <ModalBalance onClose={toggleWindow} />
           )}
           {

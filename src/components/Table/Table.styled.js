@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const TransactionBox = styled.div`
   overflow: hidden;
 
@@ -38,11 +37,10 @@ export const TableTitle = styled.tr``;
 export const TableTitleItem = styled.th`
   width: calc(100% / 5);
   height: 40px;
-
   border-spacing: 0;
-
-  background-color: #F5F6FB;
+  background-color: #f5f6fb;
   text-transform: uppercase;
+  text-align: left;
 `;
 
 export const TableBodys = styled.tbody`
@@ -53,12 +51,12 @@ export const TableBodys = styled.tbody`
 
   ::-webkit-scrollbar {
     width: 6px;
-    background-color: #F5F6FB;
+    background-color: #f5f6fb;
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 2px;
 
-    background-color: #FF751D;
+    background-color: #ff751d;
   }
 `;

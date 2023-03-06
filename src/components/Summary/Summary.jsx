@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  selectUser } from 'redux/selector';
+import { selectUser } from 'redux/selector';
 
 import {
   getExpenseTransactionsByThunk,
@@ -37,12 +37,12 @@ function mergeObjectsIntoEntries(obj1, obj2) {
 }
 
 // Function to format number, e.g. 1000 -> 1 000.00
-const formatNumber = num => {
+function formatNumber(num) {
   return num
     .toFixed(2)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-};
+}
 
 // SUMMARY Component
 export const Summary = () => {
