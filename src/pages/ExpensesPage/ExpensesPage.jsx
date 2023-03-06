@@ -3,7 +3,7 @@ import FormExpenses from 'components/Form/FormExpenses';
 import Table from 'components/Table/TableExpenses';
 
 import { Summary } from '../../components/Summary/Summary';
-import { Block } from './ExpensesPage.styled';
+import { Block, BoxColor } from './ExpensesPage.styled';
 
 export default function ExpensesPage() {
   const isScreenTablet = useMediaQuery(
@@ -11,7 +11,7 @@ export default function ExpensesPage() {
   );
   const isScreenDesktop = useMediaQuery('(min-width: 1280px)');
   return (
-    <>
+    <BoxColor>
       <FormExpenses />
       <Block>
         <Table />
@@ -19,6 +19,6 @@ export default function ExpensesPage() {
         {isScreenDesktop && <Summary />}
       </Block>
       {isScreenTablet && <Summary />}
-    </>
+    </BoxColor>
   );
 }

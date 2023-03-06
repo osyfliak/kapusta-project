@@ -8,6 +8,7 @@ import bgDesktop from  "../../images/bgDesktop.svg"
 
 
 export const ContainerBox = styled.div`
+
   margin: 0 auto;
   min-width: 320px;
   min-height: 100vh;
@@ -30,7 +31,7 @@ export const ContainerBox = styled.div`
 
 @media screen and (min-width: 768px) and (max-width: 1279px){
     margin: 0 auto;
-    width: 768px;
+    max-width: 768px;
     min-height: 100vh;
     /* height: 1200px; */
     padding: 0px 32px 60px 32px;
@@ -43,7 +44,7 @@ export const ContainerBox = styled.div`
 
 @media screen and (min-width: 1280px){
     margin: 0 auto;
-    width: 1280px;
+    max-width: 1280px;
     min-height: 100vh;
     padding: 0px 91px 60px 91px;
     background-image: url(${bgBottomDesktop}),
@@ -64,7 +65,8 @@ export const ContainerBoxReports = styled.div`
   background-repeat: no-repeat;
   background-position: top left;
 
-  @media screen and (min-width: 480px) and (max-width: 767px){\
+  @media screen and (min-width: 480px) and (max-width: 767px){
+    position: relative;
     margin: 0 auto;
     width: 480px;
     min-height: 100vh;

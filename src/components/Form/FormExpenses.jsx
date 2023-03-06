@@ -17,6 +17,7 @@ import {
   FormWrapper,
   InputWrapper,
   SelectInput,
+  OptionCat
 } from './Form.styled';
 import {
   getExpenseCategoriesThunk,
@@ -123,11 +124,11 @@ const FormExpenses = () => {
           value={description}
         />
         <SelectInput name="category" value={category} onChange={handleChange}>
-          <option value="category">Product category</option>
+          <OptionCat  value="category" disabled>Product category</OptionCat>
           {categoriesArray?.map(item => (
-            <option key={item} value={item}>
+            <OptionCat key={item} value={item}>
               {item}
-            </option>
+            </OptionCat>
           ))}
         </SelectInput>
         <CountWrapper>

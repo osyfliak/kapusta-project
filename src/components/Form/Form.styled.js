@@ -61,6 +61,7 @@ export const DateWrapper = styled.div`
 `;
 
 export const DateSelection = styled.input`
+
   outline-color: #ff751d;
   vertical-align: middle;
   font-family: inherit;
@@ -155,6 +156,7 @@ export const DescriptionInput = styled.input`
 `;
 
 export const SelectInput = styled.select`
+color: black;
   display: block;
   font-family: inherit;
   width: 100%;
@@ -255,3 +257,13 @@ export const ButtonWrapper = styled.div`
     gap: 15px;
   }
 `;
+
+export const OptionCat = styled.option`
+
+&:before,
+&:after{
+  color: #000000;
+  background-color: #D8093A !important;
+}
+
+`

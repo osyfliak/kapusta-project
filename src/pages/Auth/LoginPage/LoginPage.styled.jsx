@@ -4,7 +4,8 @@ import { HandySvg } from 'handy-svg';
 
 export const StyledLoginPage = styled.div``;
 
-export const Background = styled.div`
+export const Background = styled.div` 
+margin: 0 auto;
   position: relative;
   display: flex;
   flex-direction: column;

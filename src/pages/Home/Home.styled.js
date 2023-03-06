@@ -40,3 +40,46 @@ export const TabLink = styled(NavLink)`
     align-items: center;
   }
 `;
+
+export const TabLinkMob = styled(NavLink)`
+  @media ${DEVICE.mobile} {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+
+    width: 50%;
+    height: 53px;
+
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    text-transform: uppercase;
+
+    background-color: #f5f6fb;
+    color: #000000;
+    &.active {
+      color: #fff;
+      background-color: #ff751d;
+    }
+  }
+
+  @media ${DEVICE.tablet} {
+    display: none;
+  }
+`;
+
+export const BoxButton = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+`;
