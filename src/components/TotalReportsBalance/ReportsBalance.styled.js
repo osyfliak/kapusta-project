@@ -19,16 +19,16 @@ export const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 32px 20px;
+  margin: 32px 0;
   }
   @media ${DEVICE.tablet} {
     height: 50px;
     border-radius: 30px;
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-    margin: 32px;
+    margin: 32px 0;
   }
   @media ${DEVICE.laptop} {
-    margin: 32px 123px;
+    margin: 32px 0;
   }
 `;
 export const Text = styled.p`

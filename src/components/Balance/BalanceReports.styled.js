@@ -19,7 +19,7 @@ export const WrapperBalanceReports = styled.section`
   align-items: center;
   gap: 35px;
   background-color: #f2f5fc;
-  padding: 20px 20px;
+  padding: 20px 0px;
 
   @media ${DEVICE.tablet} {
     display: flex;
@@ -27,7 +27,7 @@ export const WrapperBalanceReports = styled.section`
     align-items: center;
     flex-direction: row;
     margin-top: 0px;
-    padding: 40px 32px 60px;
+    padding: 40px 0px 60px;
   }
   @media ${DEVICE.laptop} {
     justify-content: space-between;
@@ -35,7 +35,7 @@ export const WrapperBalanceReports = styled.section`
     flex-direction: row;
     margin-left: 0;
     flex-grow: 1;
-    padding: 40px 123px 8px;
+    padding: 40px 0px 8px;
   }
 `;
 
