@@ -82,7 +82,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(addExpenseTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.expenses = [payload.transaction, ...state.expenses];
+        state.expenses = [ ...state.expenses, payload.transaction];
       })
       .addCase(addExpenseTransactionThunk.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -131,7 +131,7 @@ export const transactionSlice = createSlice({
       })
       .addCase(addIncomeTransactionThunk.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.incomes = [payload.transaction, ...state.incomes];
+        state.incomes = [ ...state.incomes, payload.transaction];
         console.log(payload);
       })
       .addCase(addIncomeTransactionThunk.rejected, (state, { payload }) => {
