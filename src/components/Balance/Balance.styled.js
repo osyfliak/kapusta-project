@@ -130,9 +130,9 @@ export const Button = styled.button`
     border-color: #ff751d;
   }
   &:disabled {
-    background-color: lightgray;
+    background-color: transparent;
     cursor: default;
-    border-color: lightgray;
+    border-color: #ffffff;
     color: rgba(82, 85, 95, 0.7);
   }
   @media ${DEVICE.tablet} {

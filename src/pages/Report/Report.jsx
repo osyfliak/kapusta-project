@@ -1,21 +1,21 @@
 import React from 'react';
 import BalanceReports from 'components/Balance/BalanceReports';
 
-import Container from 'components/Container/Container';
+import ContainerBoxReports from 'components/Container/ContainerBoxReports';
 import { Chart } from 'components/Chart/Chart';
 import { Categories } from 'components/Categories/Categories';
 import { TotalReportsBalance } from 'components/TotalReportsBalance/TotalReportsBalance';
+import { CategoryWrap } from './Report.styled';
 
-
-export const Report = () => {  
-
-        return (
-    <Container>
+export const Report = () => {
+  return (
+    <ContainerBoxReports>
       <BalanceReports />
       <TotalReportsBalance />
-
-      <Categories/>
+      <CategoryWrap>
+        <Categories />
+      </CategoryWrap>
       <Chart />
-    </Container>
+    </ContainerBoxReports>
   );
 };

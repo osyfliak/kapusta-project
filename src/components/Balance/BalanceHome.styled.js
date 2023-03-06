@@ -19,11 +19,11 @@ export const Wrapper = styled.section`
   align-items: center;
   gap: 35px;
   background-color: #f2f5fc;
-  padding: 20px 20px;
+  padding: 20px 0;
 
   @media ${DEVICE.tablet} {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: baseline;
     flex-direction: row;
     margin-top: 0px;
@@ -51,11 +51,9 @@ export const ReportLink = styled(Link)`
   align-items: center;
   text-align: center;
   text-decoration: none;
-  @media ${DEVICE.tablet} {
-    margin-left: 251px;
-  }
+
   @media ${DEVICE.laptop} {
-    margin-left: 298px;
+    margin-left: 230px;
   }
 `;
 export const TitleLink = styled.h3`
