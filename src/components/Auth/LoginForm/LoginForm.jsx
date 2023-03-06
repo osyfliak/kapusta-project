@@ -14,11 +14,11 @@ import {
   LogInBtn,
   StyledNavlink,
 } from './LoginForm.styled';
-import { logIn } from 'redux/auth/operation';
+import { logIn, googleAuthThunk } from 'redux/auth/operation';
+import { useLocaleText } from '@mui/x-date-pickers/internals';
 
 
-export const LoginForm = () => {
-  
+export const LoginForm = () => { 
   const [emailDirty, setEmailDirty] = useState(false);
   const [passwordDirty, setPasswordDirty] = useState(false);
   const [emailError, setEmaiError] = useState('This is a required field');
@@ -29,7 +29,10 @@ export const LoginForm = () => {
  
   const dispatch = useDispatch();
 
- 
+  const googleAuth = () => {
+    dispatch(googleAuthThunk());
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
@@ -82,7 +85,7 @@ export const LoginForm = () => {
       <StyledpromtText>
         You can log in with your Google Account:
       </StyledpromtText>
-      <StyledLinkbtnGoogle href="https://kapusta-backend.goit.global/auth/google">
+      <StyledLinkbtnGoogle onClick={googleAuth}>
         <GoogleSvg />
       </StyledLinkbtnGoogle>
      

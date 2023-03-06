@@ -4,6 +4,7 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import {
   login as loginUser,
   register as registerUser,
+  googleLoginAPI,
   logout,
   setAuthHeader,
   clearAuthHeader,
@@ -80,6 +81,23 @@ const sid = state.auth.sid;
         sid: res.newSid,
       };
     } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const googleAuthThunk = createAsyncThunk(
+  'auth/googleAuth',
+  async (credentials, thunkAPI) => {
+    try {
+      const data = await googleLoginAPI(credentials);
+      setAuthHeader(data.accessToken);
+      return data;
+    } catch (error) {
+      if (error.response.status === 403) {
+        Report.failure('Email or Password is wrong.');
+      }
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -1,6 +1,7 @@
+import { ActionTypes } from '@mui/base';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { logIn, logOut, refreshUser, register } from './operation';
+import { logIn, logOut, refreshUser, register, googleAuthThunk } from './operation';
 
 const initialState = {
   user: { email: null, id: null },
@@ -42,6 +43,20 @@ export const authSlice = createSlice({
       // refresh user
       .addCase(refreshUser.pending, (state, action) => {
         state.isFetchingCurrentUser = true;
+      })
+       // googleAuth
+      .addCase(googleAuthThunk.pending, (state, action) => {
+        state.isFetchingCurrentUser = true;
+      })
+      .addCase(googleAuthThunk.fulfilled, (state, action) => {
+        console.log(action);
+        state.token = action.payload.token;
+      })
+      .addCase(googleAuthThunk.rejected, (state, action) => {
+        state.isFetchingCurrentUser = false;
+        state.user = { email: null, id: null, newBalance: null };
+        state.token = null;
+        state.isLoggedIn = false;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
