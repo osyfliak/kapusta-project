@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import moment from 'moment';
 import icon from '../../img/symbol-defs.svg';
 import { ModalButtonOrange } from 'components/ModalLogOut/ModalButtonOrange';
@@ -31,7 +30,6 @@ import { selectUser } from 'redux/selector';
 import { toast } from 'react-toastify';
 
 const FormIncome = () => {
-  const isScreenMoreTablet = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
